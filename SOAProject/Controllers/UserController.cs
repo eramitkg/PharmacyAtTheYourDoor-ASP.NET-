@@ -14,6 +14,10 @@ namespace SOAProject.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            for (int i = 0; i < 10; i++)
+            {
+                BaseObject.Session += Guid.NewGuid().ToString().Replace("-", "");
+            }
             return View();
         }
 
@@ -26,6 +30,7 @@ namespace SOAProject.Controllers
 
             if (Login(tc, password))
             {
+                
                 return RedirectToAction("Index","Home");
             }
             return RedirectToAction("Index");
@@ -49,6 +54,9 @@ namespace SOAProject.Controllers
             int res = JsonConvert.DeserializeObject<int>(result.ToString()); 
             if(res == 1)
             {
+                //AddCookie("access_token",res.Token);
+                //AddCookie("User_ID", res.User_ID);
+
                 return true;
             }
             else
@@ -57,5 +65,12 @@ namespace SOAProject.Controllers
             }
            
         }
+
+        public void AddCookie(string cookieName,string cookieValue)
+        {
+            HttpCookie cookie = new HttpCookie(cookieName, cookieValue);
+            cookie.Expires = DateTime.Now.AddYears(1);
+            HttpContext.Response.Cookies.Add(cookie);
+        }    
     }
 }
