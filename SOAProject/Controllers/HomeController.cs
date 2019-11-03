@@ -11,10 +11,9 @@ namespace SOAProject.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        
         public ActionResult Index()
-        {
-            
-
+        {    
             return View();
         }
 
@@ -28,6 +27,17 @@ namespace SOAProject.Controllers
             return View();
         }
 
-        
+        public void PostUsers()
+        {
+            var request = ApiConnect.Request("/api/users", new Dictionary<string, string>
+                {
+                    { "id","12321312313" },
+                    { "token", "sdasdsaf213123" },
+                    {"geo","oguzhankaymak" }
+                }
+            );
+
+
+        }
     }
 }

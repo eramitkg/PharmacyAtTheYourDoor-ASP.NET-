@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SOAProject.Models;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace SOAProject.Controllers
 {
@@ -19,9 +21,12 @@ namespace SOAProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(FormCollection form)
         {
-            if(ModelState.IsValid)
-            {
+            var tc = form["TCNo"];
+            var password = form["Password"];
 
+            if (Login(tc, password))
+            {
+                return RedirectToAction("Index","Home");
             }
             return RedirectToAction("Index");
         }
@@ -29,6 +34,28 @@ namespace SOAProject.Controllers
         public ActionResult Register()
         {
             return View();
+        }
+
+        public bool Login(string TC,string Password)
+        {
+            var result = ApiConnect.Request("/login", new Dictionary<string, string>
+                {
+                    { "TC",TC},
+                    {"Password",Password}
+
+                }
+            );
+
+            int res = JsonConvert.DeserializeObject<int>(result.ToString()); 
+            if(res == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+           
         }
     }
 }

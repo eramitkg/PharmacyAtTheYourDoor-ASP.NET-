@@ -1,4 +1,4 @@
-﻿
+﻿@model SOAProject.Models.User
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,24 +12,31 @@
             </div>
         </div>
         <div class="d-flex justify-content-center form_container">
-            <form>
-                <div class="input-group mb-3">
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="icon-user"></i></span>
-                    </div>
-                    <input type="text" style="border-color: transparent;" class="form-control input_user" value="" placeholder="t.c. kimlik no">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+            <div class="input-group mb-3">
+                @Html.ValidationSummary(true, "",new{@class = "text-danger" })
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="icon-user"></i></span>
                 </div>
-                <div class="input-group mb-2">
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="icon-key"></i></span>
-                    </div>
-                    <input type="password" style="border-color: transparent;" class="form-control input_pass" value="" placeholder="şifre">
+                @Html.TextBoxFor(model => model.TCNo,new {@class = "form-control input_user",style = "border-color: transparent",placeholder ="TC Kimlik No" })
+                
+            </div>
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="icon-key"></i></span>
                 </div>
-            </form>
+                @Html.TextBoxFor(model => model.Password,new { @class = "form-control input_pass",placeholder = "Şifre", style = "border-color: transparent"})
+                
+            </div>
+            <div class="d-flex justify-content-center mt-3 login_container">
+                <button type="submit" name="button" class="btn login_btn">Giriş Yap</button>
+            </div>
+            }
+
         </div>
-        <div class="d-flex justify-content-center mt-3 login_container">
-            <button type="button" name="button" class="btn login_btn">Giriş Yap</button>
-        </div>
+        
         <div class="mt-4">
             <div class="d-flex justify-content-center links" style="color: black;">
                 Hesabınız yok mu? <a href="register.html" style="color: #4267B2;" class="ml-2">Kayıt Olun</a>

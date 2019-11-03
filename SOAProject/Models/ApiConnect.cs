@@ -24,9 +24,9 @@ namespace SOAProject.Models
         {
             using(var client = new HttpClient())
             {
-                //client.Timeout = TimeSpan.FromMinutes(10);
-                //client.DefaultRequestHeaders.Add("Session", BaseObject.Session);
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BaseObject.Token);
+                client.Timeout = TimeSpan.FromMinutes(10);
+                client.DefaultRequestHeaders.Add("Session", BaseObject.Session);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BaseObject.Token);
                 var content = new FormUrlEncodedContent(keyValuePairs);
 
                 var response = client.PostAsync(ConnString + ApiUrl,content);
