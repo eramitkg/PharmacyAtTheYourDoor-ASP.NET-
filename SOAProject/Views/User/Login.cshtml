@@ -24,7 +24,7 @@
             <div class="tab-content">
                 <div id="User" class="tab-pane fade in active">
                     <div class="d-flex justify-content-center form_container">
-                        @using (Html.BeginForm())
+                        @using (Html.BeginForm("UserLogin", "User", FormMethod.Post))
                         {
                             <h3>Hasta</h3>
                             @Html.AntiForgeryToken()

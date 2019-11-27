@@ -1,8 +1,8 @@
 var sqlConfig = {
-    server: '127.0.0.1',
-    database: 'KapinizdakiEczane',
-    user: 'oguzhankaymak',
-    password: '12345',
+    server: '********', //IP NUMARANIZI GİRİNİZ
+    database: 'PHARMACY',
+    user: '*****', //KENDİ KULLANICI ADINIZ VE SİFRENİZ
+    password: '*****', 
 };
 
 module.exports = sqlConfig;

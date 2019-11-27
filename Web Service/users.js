@@ -7,7 +7,7 @@ router.post("/login",(req,res,next)=>{
     new sql.ConnectionPool(sqlConfig).connect()
     .then(pool =>{
         return pool.request()
-        .input('TCNo',req.body.TC)
+        .input('TCNo',req.body.TCNo)
         .input('Password',req.body.Password)
         .execute("Login")
     }).then(result =>{

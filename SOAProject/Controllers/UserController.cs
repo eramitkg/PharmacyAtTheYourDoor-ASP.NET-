@@ -23,19 +23,24 @@ namespace SOAProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(FormCollection form)
+        public ActionResult UserLogin(FormCollection form)
         {
-            var tc = form["TCNo"];
-            var password = form["Password"];
-
-            if (Login(tc, password))
-            {
-                
-                return RedirectToAction("Index","Home");
-            }
-            return RedirectToAction("Index");
+            return View();
         }
-        
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DoctorLogin(FormCollection form)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PharmacyLogin(FormCollection form)
+        {
+            return View();
+        }
         public ActionResult Register()
         {
             return View();
