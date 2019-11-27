@@ -43,7 +43,7 @@ namespace SOAProject.Controllers
 
         public bool Login(string TC,string Password)
         {
-            var result = ApiConnect.Request("/login", new Dictionary<string, string>
+            var result = ApiConnect.Post("/login", new Dictionary<string, string>
                 {
                     { "TC",TC},
                     {"Password",Password}
@@ -51,7 +51,7 @@ namespace SOAProject.Controllers
                 }
             );
 
-            int res = JsonConvert.DeserializeObject<int>(result.ToString()); 
+            int res = JsonConvert.DeserializeObject<int>(result.Result.ToString()); 
             if(res == 1)
             {
                 //AddCookie("access_token",res.Token);

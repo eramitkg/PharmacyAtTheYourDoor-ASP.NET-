@@ -22,4 +22,6 @@ app.get("/", (req, res, next) => {
 app.use((req, res, next) => {
     res.send("404 NOT FOUND");
 })
-app.listen(PORT);
+app.listen(PORT, ()=>{
+    console.log("Yayinda : "+ PORT)
+});

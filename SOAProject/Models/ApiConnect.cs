@@ -14,22 +14,43 @@ namespace SOAProject.Models
     {
         public static string ConnString = ConfigurationManager.ConnectionStrings["DefaultApiUrl"].ConnectionString;
 
-        public static object Request(string ApiUrl,Dictionary<string,string> keyValuePairs = null)
-        {
-            var data = Api(ApiUrl,keyValuePairs);
-            return data.Result;
-        }
-
-        public async static Task<object> Api(string ApiUrl,Dictionary<string,string> keyValuePairs = null)
+        
+        public async static Task<object> Get(string ApiUrl)
         {
             using(var client = new HttpClient())
             {
                 client.Timeout = TimeSpan.FromMinutes(10);
                 client.DefaultRequestHeaders.Add("Session", BaseObject.Session);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BaseObject.Token);
+                
+
+                var response = client.GetAsync(ConnString + ApiUrl);
+
+                var responseString = response.Result.Content.ReadAsStringAsync();
+                var err = responseString.Result;
+                try
+                {
+                    var res = JsonConvert.DeserializeObject(responseString.Result);
+                    return res;
+                }
+                catch (Exception)
+                {
+
+                    return err;
+                }
+            }
+        }
+
+        public async static Task<object> Post(string ApiUrl, Dictionary<string, string> keyValuePairs = null)
+        {
+            using (var client = new HttpClient())
+            {
+                client.Timeout = TimeSpan.FromMinutes(10);
+                client.DefaultRequestHeaders.Add("Session", BaseObject.Session);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BaseObject.Token);
                 var content = new FormUrlEncodedContent(keyValuePairs);
 
-                var response = client.PostAsync(ConnString + ApiUrl,content);
+                var response = client.PostAsync(ConnString + ApiUrl, content);
 
                 var responseString = response.Result.Content.ReadAsStringAsync();
                 var err = responseString.Result;

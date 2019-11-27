@@ -29,7 +29,7 @@ namespace SOAProject.Controllers
 
         public void PostUsers()
         {
-            var request = ApiConnect.Request("/api/users", new Dictionary<string, string>
+            var request = ApiConnect.Post("/api/users", new Dictionary<string, string>
                 {
                     { "id","12321312313" },
                     { "token", "sdasdsaf213123" },
