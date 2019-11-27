@@ -23,50 +23,45 @@ namespace SOAProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UserLogin(FormCollection form)
+        public ActionResult Login(FormCollection form)
         {
-            return View();
+            string TC = form["TCNo"];
+            string password = form["Password"];
+            string type = form["type"];
+            if (Login(TC, password, type))
+            {
+                return RedirectToAction("Contact", "Home");
+            }
+            return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DoctorLogin(FormCollection form)
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult PharmacyLogin(FormCollection form)
-        {
-            return View();
-        }
+        
         public ActionResult Register()
         {
             return View();
         }
 
-        public bool Login(string TC,string Password)
+        public bool Login(string TC,string Password,string Type)
         {
             var result = ApiConnect.Post("/login", new Dictionary<string, string>
                 {
-                    { "TC",TC},
-                    {"Password",Password}
+                    { "TCNo",TC},
+                    {"Password",Password},
+                    {"Type",Type}
 
                 }
             );
 
             int res = JsonConvert.DeserializeObject<int>(result.Result.ToString()); 
-            if(res == 1)
+            if(res == 0)
             {
-                //AddCookie("access_token",res.Token);
-                //AddCookie("User_ID", res.User_ID);
-
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                //AddCookie("access_token",res.Token);
+                //AddCookie("User_ID", res.User_ID);
+                return true;
             }
            
         }

@@ -11,111 +11,52 @@
                 <img src="/Styles/Home/images/icon.png" class="brand_logo" alt="Logo">
             </div>
         </div>
-        <div class="container" style="text-align:center;" >
-            <div class="wrapper">
-                <ul class="btn-group btn-group-toggle" data-toggle="buttons" style="list-style: none;">
-                    <li><a class="btn btn-danger btn-pill " href="#User" data-toggle="tab">Hasta</a></li>
-                    <li><a class="btn btn-danger" href="#Doctor" data-toggle="tab">Doktor</a></li>
-                    <li><a class="btn btn-danger" href="#Pharmacy" data-toggle="tab">Eczane</a></li>
-                </ul>
-            </div>
-        
-            
-            <div class="tab-content">
-                <div id="User" class="tab-pane fade in active">
-                    <div class="d-flex justify-content-center form_container">
-                        @using (Html.BeginForm("UserLogin", "User", FormMethod.Post))
-                        {
-                            <h3>Hasta</h3>
-                            @Html.AntiForgeryToken()
-                            <div class="input-group mb-3">
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                @Html.TextBoxFor(model => model.TCNo, new { @class = "form-control input_user", style = "border-color: transparent", placeholder = "TC Kimlik No" })
+        <div class="d-flex justify-content-center form_container">
+            @using (Html.BeginForm("Login","User",FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="input-group mb-3">
 
-                            </div>
-                            <div class="input-group mb-2">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="icon-key"></i></span>
-                                </div>
-                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control input_pass", placeholder = "Şifre", style = "border-color: transparent" })
-
-                            </div>
-                            <div class="d-flex justify-content-center mt-3 login_container">
-                                <button type="submit" name="button" class="btn login_btn">Giriş Yap</button>
-                            </div>
-                        }
-
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-danger active">
+                            <input type="radio" name="type" id="option1" value="user" autocomplete="off" checked> Hasta
+                        </label>
+                        <label class="btn btn-outline-danger">
+                            <input type="radio" name="type" id="option2" value="doctor "autocomplete="off"> Doktor
+                        </label>
+                        <label class="btn btn-outline-danger">
+                            <input type="radio" name="type" id="option3" value="pharmacy" autocomplete="off"> Eczane
+                        </label>
                     </div>
+
                 </div>
-                <div id="Doctor" class="tab-pane fade">
-                    <div class="d-flex justify-content-center form_container">
-                        @using (Html.BeginForm())
-                        {
-                            <h3>Doktor</h3>
-                            @Html.AntiForgeryToken()
-                            <div class="input-group mb-3">
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                @Html.TextBoxFor(model => model.TCNo, new { @class = "form-control input_user", style = "border-color: transparent", placeholder = "TC Kimlik No" })
-
-                            </div>
-                            <div class="input-group mb-2">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="icon-key"></i></span>
-                                </div>
-                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control input_pass", placeholder = "Şifre", style = "border-color: transparent" })
-
-                            </div>
-                            <div class="d-flex justify-content-center mt-3 login_container">
-                                <button type="submit" name="button" class="btn login_btn">Giriş Yap</button>
-                            </div>
-                        }
-
+                <div class="input-group mb-3">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
+                    @Html.TextBoxFor(model => model.TCNo, new { @class = "form-control input_user", style = "border-color: transparent", placeholder = "TC Kimlik No" })
+
                 </div>
-                <div id="Pharmacy" class="tab-pane fade">
-                    <div class="d-flex justify-content-center form_container">
-                        @using (Html.BeginForm())
-                        {
-                            <h3>Eczane</h3>
-                            @Html.AntiForgeryToken()
-                            <div class="input-group mb-3">
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                @Html.TextBoxFor(model => model.TCNo, new { @class = "form-control input_user", style = "border-color: transparent", placeholder = "TC Kimlik No" })
-
-                            </div>
-                            <div class="input-group mb-2">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="icon-key"></i></span>
-                                </div>
-                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control input_pass", placeholder = "Şifre", style = "border-color: transparent" })
-
-                            </div>
-                            <div class="d-flex justify-content-center mt-3 login_container">
-                                <button type="submit" name="button" class="btn login_btn">Giriş Yap</button>
-                            </div>
-                        }
-
+                <div class="input-group mb-2">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="icon-key"></i></span>
                     </div>
+                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control input_pass", placeholder = "Şifre", style = "border-color: transparent" })
+
                 </div>
-                
-            </div>
+
+                <div class="d-flex justify-content-center mt-3 login_container">
+                    <button type="submit" name="button" class="btn login_btn">Giriş Yap</button>
+                </div>
+            }
 
         </div>
-    
 
-    <div class="mt-4">
-        <div class="d-flex justify-content-center links" style="color: black;">
-            Hesabınız yok mu? <a href="Register" style="color: #4267B2;" class="ml-2">Kayıt Olun</a>
+        <div class="mt-4">
+            <div class="d-flex justify-content-center links" style="color: black;">
+                Hesabınız yok mu? <a href="Register" style="color: #4267B2;" class="ml-2">Kayıt Olun</a>
+            </div>
         </div>
-    </div>
     </div>
 </div>
