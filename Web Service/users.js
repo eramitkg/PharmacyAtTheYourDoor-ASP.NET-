@@ -7,19 +7,23 @@ router.post("/login",(req,res,next)=>{
 
     new sql.ConnectionPool(sqlConfig).connect()
     .then(pool =>{  
-        console.log(req.body.Type)
-        if(req.body.Type =="user"){
-            return pool.request()
-            .input('TCNo',req.body.TCNo)
-            .input('Password',req.body.Password)
-            .execute("Login")
-        }
-        else if(req.body.Type =="doctor"){
+        console.log("TC : " + req.body.TCNo)
+        console.log("PASSWORD : " + req.body.Password)
+        console.log("ROLE : " + req.body.Role)
+        if(req.body.Role =="doctor"){
+            console.log("girdi");
             return pool.request()
             .input('TCNo',req.body.TCNo)
             .input('Password',req.body.Password)
             .execute("LoginDoctor")
         }
+        else if(req.body.Role =="user"){
+            return pool.request()
+            .input('TCNo',req.body.TCNo)
+            .input('Password',req.body.Password)
+            .execute("Login")
+        }
+
         else{
             return pool.request()
             .input('TCNo',req.body.TCNo)
@@ -28,7 +32,7 @@ router.post("/login",(req,res,next)=>{
         }
         
     }).then(result =>{
-        res.send(JSON.stringify(result.returnValue));
+        res.send(result.recordsets[0]);
     })
 })
 router.post("/register",(req,res,next) =>{
