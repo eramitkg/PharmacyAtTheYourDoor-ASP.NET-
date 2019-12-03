@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>Reçete Detayları</title>
+</head>
+
+<body>
+
+
+    <div class="detailCard">
+        <div class="card">
+            <div class="card-header">
+                Sn. Hasta Soyad
+                <button style="float: right" type="button" class="btn btn-outline-danger">Reçeteyi Sil</button>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">İlaçlar</h4>
+                <div class="container-fluid">
+                    <table class="table table-light-dark">
+                        <thead class="table-dark">
+                            <th>Adı</th>
+                            <th>Miktar</th>
+                            <th>Kullanım</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ağrı Kesici</td>
+                                <td>2</td>
+                                <td>
+                                    <label for="using-morning">Sabah</label>
+                                    <input class="using-morning" type="checkbox" id="customInput" disabled="disabled"
+                                        checked="checked">
+                                    <label for="using-afternoon">Öğle</label>
+                                    <input class="using-afternoon" type="checkbox" id="customInput" disabled="disabled"
+                                        checked="checked">
+                                    <label for="using-evening">Akşam</label>
+                                    <input class="using-evening" type="checkbox" id="customInput" disabled="disabled">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Ateş Düşürücü</td>
+                                <td>3</td>
+                                <td>
+                                    <label for="using-morning">Sabah</label>
+                                    <input class="using-morning" type="checkbox" id="customInput" disabled="disabled"
+                                        checked="checked">
+                                    <label for="using-afternoon">Öğle</label>
+                                    <input class="using-afternoon" type="checkbox" id="customInput" disabled="disabled">
+                                    <label for="using-evening">Akşam</label>
+                                    <input class="using-evening" type="checkbox" id="customInput" disabled="disabled"
+                                        checked="checked">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                Dr. Doktor Soyad
+                <button style="float: right" type="button" class="btn btn-outline-dark">Kapat</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

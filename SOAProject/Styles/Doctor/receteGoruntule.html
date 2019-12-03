@@ -1,0 +1,165 @@
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <title>Navbar Collapse</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+    <ul id="mySidebar" class="sidebar">
+        <li>
+            <span class="openbtn"><i id="open-hide-bar" class="fas fa-bars"></i></span>
+
+        </li>
+        <li>
+            <a href="/Receteler/receteEkle.html">
+                <i class="fas fa-user-md"></i>
+                <span class="text-collapse">
+                    Reçete Yaz
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="/Receteler/receteGoruntule.html">
+                <i class="fas fa-medkit"></i>
+                <span class="text-collapse">
+                    Reçeteler
+                </span>
+
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-address-card"></i>
+                <span class="text-collapse">
+                    Hakkında
+                </span>
+            </a>
+
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-address-book"></i>
+                <span class="text-collapse">
+                    İletişim
+                </span>
+            </a>
+        </li>
+    </ul>
+
+    <div id="main">
+        <table class="table table-light-dark ">
+            <thead class="table-dark">
+                <tr>
+                    <th><i class="fas fa-fingerprint"></i>TC</th>
+                    <th><i class="fas fa-leaf mr-2 teal-text" aria-hidden="true"></i>Ad</th>
+                    <th><i class="fas fa-leaf mr-2 teal-text" aria-hidden="true"></i>Soyad</th>
+                    <th><i class="fas fa-first-aid"></i></i>Reçete ID</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>sdadasdas</td>
+                    <td>dasdsadasdsa</td>
+                    <td>sadasdadas</td>
+                    <td><button class="btn btn-outline-dark" type="button" data-toggle="modal" data-target="#modalDiv" aria-expanded="false" aria-controls="modalDiv">Detay</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sadasdsdsad</td>
+                    <td>adsdadasd</td>
+                    <td>sadasdasdada</td>
+                    <td><button class="btn btn-outline-dark" type="button" data-toggle="modal" data-target="#modalDiv" aria-expanded="false" aria-controls="modalDiv">Detay</button>
+                </tr>
+                <tr>
+                    <td>sdadaw342432423423</td>
+                    <td>3243232r2fs</td>
+                    <td>3423dadada</td>
+                    <td><button class="btn btn-outline-dark" type="button" data-toggle="modal" data-target="#modalDiv" aria-expanded="false" aria-controls="modalDiv">Detay</button>
+                </tr>
+            </tbody>
+        </table>
+        <button style="position: sticky; left: 95%;" id="btn btn-outline-dark" type="button"
+            class="btn btn-outline-danger">Kaydet</button>
+    </div>
+
+    <!--Modal Div start-->
+            <div class="modal fade bd-example-modal-lg" id="modalDiv" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" id="collapseExample" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="card card-body">
+                    <div class="card">
+                        <div class="card-header">
+                            Sn. Hasta Soyad
+                            <button style="float: right" type="button" class="btn btn-danger">Reçeteyi Sil</button>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">İlaçlar</h4>
+                            <div class="container-fluid">
+                                <table class="table table-light-dark">
+                                    <thead class="table-dark">
+                                        <th>Adı</th>
+                                        <th>Miktar</th>
+                                        <th>Kullanım</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Ağrı Kesici</td>
+                                            <td>2</td>
+                                            <td>
+                                                <label for="using-morning">Sabah</label>
+                                                <input class="using-morning" type="checkbox" id="customInput" disabled="disabled"
+                                                    checked="checked">
+                                                <label for="using-afternoon">Öğle</label>
+                                                <input class="using-afternoon" type="checkbox" id="customInput" disabled="disabled"
+                                                    checked="checked">
+                                                <label for="using-evening">Akşam</label>
+                                                <input class="using-evening" type="checkbox" id="customInput" disabled="disabled">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ateş Düşürücü</td>
+                                            <td>3</td>
+                                            <td>
+                                                <label for="using-morning">Sabah</label>
+                                                <input class="using-morning" type="checkbox" id="customInput" disabled="disabled"
+                                                    checked="checked">
+                                                <label for="using-afternoon">Öğle</label>
+                                                <input class="using-afternoon" type="checkbox" id="customInput" disabled="disabled">
+                                                <label for="using-evening">Akşam</label>
+                                                <input class="using-evening" type="checkbox" id="customInput" disabled="disabled"
+                                                    checked="checked">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            Dr. Doktor Soyad
+                            <button style="float: right" type="button" class="btn btn-outline-dark">Kapat</button>
+                        </div>
+            
+                    </div>
+                    </div>
+                </div>
+                
+            </div>
+    <!--Modal Div end-->
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="/script.js"></script>
+</body>
+
+<!--document.getElementsByTagName("div")[0].innerHTML+='<img src="3.gif" height="116" widht="75" />'-->
+
+</html>

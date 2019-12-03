@@ -1,0 +1,106 @@
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <title>Navbar Collapse</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body class="body">
+    <ul id="mySidebar" class="sidebar">
+        <li>
+            <span class="openbtn"><i id="open-hide-bar" class="fas fa-bars"></i></span>
+                  
+        </li>
+        <li>
+            <a href="/Receteler/receteEkle.html">
+                <i class="fas fa-user-md"></i>
+                <span class="text-collapse">
+                    Reçete Yaz
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="/Receteler/receteGoruntule.html">
+                <i class="fas fa-medkit"></i>
+                <span class="text-collapse">
+                    Reçeteler
+                </span>
+
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-address-card"></i>
+                <span class="text-collapse">
+                    Hakkında
+                </span>
+            </a>
+
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-address-book"></i>
+                <span class="text-collapse">
+                    İletişim
+                </span>
+            </a>
+        </li>
+    </ul>
+
+    <div id="main">
+        
+        <table class="table  table-light">
+            <thead class="table-dark" >
+                
+                    <th class="thClass" scope="col">TC</th>
+                    <th class="thClass" scope="col">İlaç</th>
+                    <th class="thClass" scope="col">Adet</th>
+                    <th class="thClass" scope="col">Kullanım
+                    <th class="thClass" scope="col"></th>
+            
+            </thead>
+            <tbody class="tbody">
+            <tr>
+                <td> <input id="customInput" class="form-control" type="text" placeholder="TC" > </td>
+                <td> <input id="customInput" class="form-control" type="text" placeholder="İlaç"> </td>
+                <td> <input id="customInput" class="form-control" type="number" placeholder="Adet"> </td>
+                <td>
+                    <label for="using-morning">Sabah</label>
+                    <input class="using-morning" type="checkbox" id="customInput">
+                    <label for="using-afternoon">Öğle</label>
+                    <input class="using-afternoon" type="checkbox" id="customInput">
+                    <label for="using-evening">Akşam</label>
+                    <input class="using-evening" type="checkbox" id="customInput">
+                </td>
+                <div>
+                    <td>
+                        <span class="fa-stack fa-1x">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </td>
+                </div>
+            </tr>
+            </tbody>
+
+        </table>
+        <button style="position: sticky; left: 95%;" id="btn_randevu_kaydet" type="button"
+            class="btn btn-outline-danger">Kaydet</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="/script.js"></script>
+</body>
+
+<!--document.getElementsByTagName("div")[0].innerHTML+='<img src="3.gif" height="116" widht="75" />'-->
+
+</html>
