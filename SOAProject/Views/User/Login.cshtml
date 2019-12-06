@@ -28,21 +28,22 @@
                             <input type="radio" name="role" id="option3" value="pharmacy" autocomplete="off"> Eczane
                         </label>
                     </div>
-
+                   
                 </div>
                 <div class="input-group mb-3">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="input-group-append">
                         <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
-                    @Html.TextBoxFor(model => model.TC, new { @class = "form-control input_user", style = "border-color: transparent", placeholder = "TC Kimlik No" })
+                    <input type="text" class="form-control input_user" style = "border-color: transparent"  name="loginNo" placeholder = "Giris Numarası"/>
+        
 
                 </div>
                 <div class="input-group mb-2">
                     <div class="input-group-append">
                         <span class="input-group-text"><i class="icon-key"></i></span>
                     </div>
-                    @Html.TextBoxFor(model => model.PASSWORD, new { @class = "form-control input_pass", placeholder = "Şifre", style = "border-color: transparent" })
+                    @Html.TextBoxFor(model => model.PASSWORD, new { @class = "form-control input_pass", placeholder = "Şifre", style = "border-color: transparent",type = "password" })
 
                 </div>
 

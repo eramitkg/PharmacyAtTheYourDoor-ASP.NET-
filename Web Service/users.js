@@ -9,7 +9,6 @@ router.post("/login",(req,res,next)=>{
     .then(pool =>{  
         
         if(req.body.Role =="doctor"){
-            console.log("girdi");
             return pool.request()
             .input('TCNo',req.body.TCNo)
             .input('Password',req.body.Password)
@@ -24,14 +23,14 @@ router.post("/login",(req,res,next)=>{
 
         else{
             return pool.request()
-            .input('TCNo',req.body.TCNo)
+            .input('RecordNo',req.body.RecordNo)
             .input('Password',req.body.Password)
             .execute("LoginPharmacy")
         }
         
     }).then(result =>{
         res.send(result.recordsets[0]);
-    })
+    })  
 })
 router.post("/register",(req,res,next) =>{
     res.send("Register Page");

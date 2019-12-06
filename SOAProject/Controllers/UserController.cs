@@ -12,6 +12,7 @@ namespace SOAProject.Controllers
     {
         public static User user;
         public static Doctor doctor;
+        public static Pharmacy pharmacy;
         // GET: User
         [HttpGet]
         public ActionResult Login()
@@ -27,10 +28,10 @@ namespace SOAProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(FormCollection form)
         {
-            string TC = form["TC"];
+            string loginNo = form["loginNo"];
             string password = form["Password"];
             string role = form["role"];
-            if (Login(TC, password, role))
+            if (Login(loginNo, password, role))
             {
                 if(role == "doctor")
                 {
@@ -41,13 +42,23 @@ namespace SOAProject.Controllers
                 }
                 else if(role == "user")
                 {
+                    ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Giriş Yapıldı", ToastrType.Success));
                     return RedirectToAction("Contact", "Home");
+                }
+                else if(role == "pharmacy")
+                {
+                    ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Giriş Yapıldı", ToastrType.Success));
+                    return RedirectToAction("About", "Home");
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    ToastrService.AddToUserQueue(new Toastr("Lütfen giriş bilgilerinizi kontrol ediniz ", "Giriş Yapılamadı", ToastrType.Error));
                 }
                 
+            }
+            else
+            {
+                ToastrService.AddToUserQueue(new Toastr("Lütfen giriş bilgilerinizi kontrol ediniz ", "Giriş Yapılamadı", ToastrType.Error));
             }
             return View();
             
@@ -60,30 +71,18 @@ namespace SOAProject.Controllers
         }
 
         
-        public bool Login(string TC,string Password,string Role)
+        public bool Login(string loginNo,string Password,string Role)
         {
-            var result = ApiConnect.Post("/login", new Dictionary<string, string>
+            if (Role =="user")
+            {
+                var result = ApiConnect.Post("/login", new Dictionary<string, string>
                 {
-                    { "TCNo",TC},
+                    { "TCNo",loginNo},
                     {"Password",Password},
                     {"Role",Role}
 
-                }
-            );
+                });
 
-
-            if (Role == "doctor")
-            {
-                List<Doctor> doctors = JsonConvert.DeserializeObject<List<Doctor>>(result.Result.ToString());
-                if (doctors.Count > -1)
-                {
-                    doctor = doctors[0];
-                    return true;
-                }
-                return false;
-            }
-            else if (Role == "user")
-            {
                 List<User> users = JsonConvert.DeserializeObject<List<User>>(result.Result.ToString());
                 if (users.Count > 0)
                 {
@@ -92,12 +91,47 @@ namespace SOAProject.Controllers
                 }
                 return false;
             }
+
+            else if (Role == "doctor")
+            {
+                var result = ApiConnect.Post("/login", new Dictionary<string, string>
+                {
+                    { "TCNo",loginNo},
+                    {"Password",Password},
+                    {"Role",Role}
+
+                });
+
+                List<Doctor> doctors = JsonConvert.DeserializeObject<List<Doctor>>(result.Result.ToString());
+                if (doctors.Count > -1)
+                {
+                    doctor = doctors[0];
+                    return true;
+                }
+                return false;
+            }
             
+            else if (Role == "pharmacy")
+            {
+                var result = ApiConnect.Post("/login", new Dictionary<string, string>
+                {
+                    { "RecordNo",loginNo},
+                    {"Password",Password},
+                    {"Role",Role}
+
+                });
+
+                List<Pharmacy> pharmacies = JsonConvert.DeserializeObject<List<Pharmacy>>(result.Result.ToString());
+                if (pharmacies.Count > 0)
+                {
+                    pharmacy = pharmacies[0];
+                    return true;
+                }
+                return false;
+            }
             else
             {
-                //Ayarlanacak
-                List<User> resultList = JsonConvert.DeserializeObject<List<User>>(result.Result.ToString());
-                return true;
+                return false;
             }
            
         }
