@@ -7,9 +7,7 @@ router.post("/login",(req,res,next)=>{
 
     new sql.ConnectionPool(sqlConfig).connect()
     .then(pool =>{  
-        console.log("TC : " + req.body.TCNo)
-        console.log("PASSWORD : " + req.body.Password)
-        console.log("ROLE : " + req.body.Role)
+        
         if(req.body.Role =="doctor"){
             console.log("girdi");
             return pool.request()

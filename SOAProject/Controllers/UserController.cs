@@ -36,6 +36,7 @@ namespace SOAProject.Controllers
                 {
                     //AddCookie("access_token",res.Token);
                     //AddCookie("User_ID", res.User_ID);
+                    ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Giriş Yapıldı", ToastrType.Success));
                     return RedirectToAction("Index", "Doctor");
                 }
                 else if(role == "user")

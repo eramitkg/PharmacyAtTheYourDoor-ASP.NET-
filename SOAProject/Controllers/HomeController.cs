@@ -19,6 +19,7 @@ namespace SOAProject.Controllers
 
         public ActionResult About()
         {
+            
             return View();
         }
 

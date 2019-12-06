@@ -4,6 +4,8 @@
     <title>Ana Sayfa</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet" />
     <link href="~/Styles/Home/css/bootstrap.min.css" rel="stylesheet" />
@@ -14,6 +16,8 @@
     <link href="~/Styles/Home/css/owl.theme.default.min.css" rel="stylesheet" />
     <link href="~/Styles/Home/css/aos.css" rel="stylesheet" />
     <link href="~/Styles/Home/css/style.css" rel="stylesheet" />
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
 
 </head>
 <body>
@@ -43,15 +47,15 @@
                         <a href="/User/Login" class="icons-btn d-inline-block" title="Hasta Giriş ">
                             <span class="icon-user"></span>
                         </a>
-                        
+
 
                     </div>
-                    
+
                 </div>
             </div>
         </div>
-    @RenderBody()
-            
+        @RenderBody()
+
         <footer class="site-footer">
             <div class="container">
                 <div class="row">
@@ -94,24 +98,21 @@
                 </div>
             </div>
         </footer>
-        </div>
-    
-        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-        <script src="~/Scripts/popper.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>
-        <script src="~/Styles/Home/js/aos.js"></script>
-        <script src="~/Styles/Home/js/owl.carousel.min.js"></script>
-        <script src="~/Styles/Home/js/jquery.magnific-popup.min.js"></script>
-        <script src="~/Styles/Home/js/main.js"></script>
+    </div>
 
-        @*<script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/jquery-ui.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.magnific-popup.min.js"></script>
-        <script src="js/aos.js"></script>
-        <script src="js/main.js"></script>*@
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Styles/Home/js/aos.js"></script>
+    <script src="~/Styles/Home/js/owl.carousel.min.js"></script>
+    <script src="~/Styles/Home/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Styles/Home/js/main.js"></script>
+    
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/toastrconfig.js"></script>
+
+    @ToastrHelper.ProcessToastrs()
 
 </body>
 </html>
