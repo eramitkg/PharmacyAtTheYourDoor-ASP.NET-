@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Navbar Collapse</title>
+    <title>@ViewBag.Title</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="~/Styles/Doctor/style.css" rel="stylesheet" />
@@ -10,6 +10,7 @@
     <link href="~/Styles/Doctor/bootstrap.css" rel="stylesheet" />
     <link href="~/Styles/Doctor/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
 </head>
 
 <body style="background-color: #dee2e6;">
@@ -19,36 +20,26 @@
         </li>
 
         <li>
-            <a href="/Receteler/receteEkle.html">
+            <a href="/Patient/Index">
                 <i class="fas fa-user-md"></i>
                 <span class="text-collapse">
-                    Reçete Yaz
+                    Reçeteler
                 </span>
             </a>
         </li>
         <li>
-            <a href="/Receteler/receteGoruntule.html">
+            <a href="@Url.Action("Recipes","Patient", new { @isDelivered = true })">
                 <i class="fas fa-medkit"></i>
                 <span class="text-collapse">
-                    Reçeteler
+                    Geçmiş Reçeteler
                 </span>
-
             </a>
         </li>
         <li>
             <a href="#">
                 <i class="fas fa-address-card"></i>
                 <span class="text-collapse">
-                    Hakkında
-                </span>
-            </a>
-
-        </li>
-        <li>
-            <a href="#">
-                <i class="fas fa-address-book"></i>
-                <span class="text-collapse">
-                    İletişim
+                    Ayarlar
                 </span>
             </a>
         </li>
@@ -57,13 +48,13 @@
     <div id="main">
         @RenderBody()
     </div>
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Styles/Doctor/script.js"></script>
-    <script src="~/Scripts/toastr.min.js"></script>
-    <script src="~/Scripts/toastrconfig.js"></script>
-    @ToastrHelper.ProcessToastrs()
 
+
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Styles/Doctor/script.js"></script>
+<script src="~/Scripts/toastr.min.js"></script>
+<script src="~/Scripts/toastrconfig.js"></script>
 
 </body>
 
