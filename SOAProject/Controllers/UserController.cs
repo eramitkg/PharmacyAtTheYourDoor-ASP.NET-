@@ -80,7 +80,6 @@ namespace SOAProject.Controllers
                     { "TCNo",loginNo},
                     {"Password",Password},
                     {"Role",Role}
-
                 });
 
                 List<User> users = JsonConvert.DeserializeObject<List<User>>(result.Result.ToString());
