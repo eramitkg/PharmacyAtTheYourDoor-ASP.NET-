@@ -13,6 +13,8 @@ namespace SOAProject.Controllers
         public static User user;
         public static Doctor doctor;
         public static Pharmacy pharmacy;
+
+        private static int patientId;
         // GET: User
         [HttpGet]
         public ActionResult Login()
@@ -43,7 +45,7 @@ namespace SOAProject.Controllers
                 else if(role == "user")
                 {
                     ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Giriş Yapıldı", ToastrType.Success));
-                    return RedirectToAction("Contact", "Home");
+                    return RedirectToAction("Recipes", "Patient", new { @id = patientId });
                 }
                 else if(role == "pharmacy")
                 {
@@ -60,8 +62,8 @@ namespace SOAProject.Controllers
             {
                 ToastrService.AddToUserQueue(new Toastr("Lütfen giriş bilgilerinizi kontrol ediniz ", "Giriş Yapılamadı", ToastrType.Error));
             }
+
             return View();
-            
         }
 
         
@@ -86,6 +88,7 @@ namespace SOAProject.Controllers
                 if (users.Count > 0)
                 {
                     user = users[0];
+                    patientId = user.PATIENTID;
                     return true;
                 }
                 return false;
