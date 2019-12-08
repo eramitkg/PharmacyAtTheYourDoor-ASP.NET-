@@ -121,6 +121,7 @@
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap-4.3.1.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -242,7 +243,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\PharmacyController.cs" />
+    <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Models\RecipeOperation.cs" />
     <Compile Include="Services\Toastr\Toastr.cs" />
     <Compile Include="Services\ToastrService.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -267,6 +271,9 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutDoctor.cshtml" />
+    <Content Include="Views\Shared\_LayoutPatient.cshtml" />
+    <Content Include="Views\Patient\Recipes.cshtml" />
+    <Content Include="Views\Patient\RecipeDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

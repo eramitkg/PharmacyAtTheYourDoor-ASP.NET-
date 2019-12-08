@@ -18,6 +18,7 @@ namespace SOAProject.Models
         public string SUBSTREET { get; set; }
         public string COUNTY { get; set; }
         public string PROVINCE { get; set; }
+        public int PATIENTID { get; set; }
 
     }
 }

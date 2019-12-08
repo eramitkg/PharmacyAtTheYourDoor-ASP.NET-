@@ -1,0 +1,45 @@
+﻿@model SOAProject.Models.Recipe
+
+@{
+    Layout = null;
+}
+
+<div class="container-fluid">
+
+    <table class="table table-light-dark">
+        <thead class="table-dark">
+            <tr>
+                <th>Adı</th>
+                <th>Tipi</th>
+                <th>Kullanım</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                string[] medicines = @Model.MEDICINENAME.Split('-');
+                string[] types = @Model.TYPE.Split('-');
+                string[] usages = @Model.USAGE.Split('-');
+            }
+
+            @{
+                int i = 0;
+                foreach (var item in @medicines)
+                {
+                    <tr>
+                        <td>@medicines[i]</td>
+                        <td>@types[i]</td>
+                        <td>@usages[i]</td>
+                    </tr>
+
+                    i++;
+                }
+            }
+            }
+
+        </tbody>
+    </table>
+</div>
+<div class="card-footer">
+    <label>Dr. @Model.USERNAME @Model.SURNAME</label>
+    <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
+</div>

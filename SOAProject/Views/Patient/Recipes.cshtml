@@ -1,0 +1,74 @@
+﻿@using SOAProject.Models
+@model List<SOAProject.Models.Recipe>
+@{
+    ViewBag.Title = "Hoşgeldiniz!";
+    Layout = "~/Views/Shared/_LayoutPatient.cshtml";
+}
+
+
+<div id="main">
+    <table class="table table-light-dark ">
+        <thead class="table-dark">
+            <tr>
+                <th><i class="fas fa-leaf mr-2 teal-text" aria-hidden="true"></i>Bölüm</th>
+                <th><i class="fas fa-leaf mr-2 teal-text" aria-hidden="true"></i>Tarih</th>
+                <th><i class="fas fa-first-aid">&nbsp;İşlemler</i></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var recipe in Model)
+            {
+                <tr>
+                    <td>@recipe.DEPARTMENT</td>
+                    <td>@recipe.ISSUEDATE.ToString("dd-MM-yyyy")</td>
+                    <td>
+                        <button class="btn btn-outline-dark modalLink" type="button" data-toggle="modal" data-target="#modalDiv"
+                                aria-expanded="false" aria-controls="modalDiv" onclick="Open(@recipe.RECIPEID)">
+                            Detaylar
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<div class="modal bd-example-modal-lg" id="modalDiv" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reçete Detayı</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="Preview">
+                @*PartialView*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
+    $(document).on("click", ".modalLink", function () {
+        var passedID = $(this).data('id');
+        $(".modal-body .hiddenid").val(passedID);
+    });
+</script>
+
+<script type="text/javascript">
+    function Open(currentId) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("RecipeDetail", "Patient")',
+            data: { id: currentId },
+            success: function (data) {
+                $('#Preview').html(data);
+                $('#modalDiv').modal('show');
+            }
+        });
+    }
+</script>

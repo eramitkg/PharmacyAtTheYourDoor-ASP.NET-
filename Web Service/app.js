@@ -1,6 +1,7 @@
 const sql = require('mssql');
 const express = require('express');
 const userRouter = require('./users');
+const medicinesRouter = require('./medicines');
 
 var bodyParser = require('body-parser');
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(userRouter)
+app.use(medicinesRouter)
 
 app.get("/", (req, res, next) => {
     res.send("Oldu");

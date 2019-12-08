@@ -2,7 +2,7 @@ var sqlConfig = {
     server: '****', //IP NUMARANIZI GİRİNİZ
     database: 'PHARMACY',
     user: '***', //KENDİ KULLANICI ADINIZ VE SİFRENİZ
-    password: '***', 
+    password: '****', 
 };
 
 module.exports = sqlConfig;
