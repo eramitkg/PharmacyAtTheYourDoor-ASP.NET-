@@ -1,38 +1,51 @@
 const sql = require('mssql');
 const express = require('express');
-const router = express();   
+const router = express();
 const sqlConfig = require("./routes/dbConfig");
 
-router.post("/login",(req,res,next)=>{
+router.post("/getusersforpharmacy", (req, res, next) => {
 
     new sql.ConnectionPool(sqlConfig).connect()
-    .then(pool =>{  
-        
-        if(req.body.Role =="doctor"){
+        .then(pool => {
             return pool.request()
-            .input('TCNo',req.body.TCNo)
-            .input('Password',req.body.Password)
-            .execute("LoginDoctor")
-        }
-        else if(req.body.Role =="user"){
-            return pool.request()
-            .input('TCNo',req.body.TCNo)
-            .input('Password',req.body.Password)
-            .execute("Login")
-        }
+                .input('PharmacyId', req.body.PharmacyId)
+                .execute("GetUsersForPharmacy")
 
-        else{
-            return pool.request()
-            .input('RecordNo',req.body.RecordNo)
-            .input('Password',req.body.Password)
-            .execute("LoginPharmacy")
-        }
-        
-    }).then(result =>{
-        res.send(result.recordsets[0]);
-    })  
+        }).then(result => {
+            res.send(result.recordsets[0]);
+        })
 })
-router.post("/register",(req,res,next) =>{
+
+router.post("/login", (req, res, next) => {
+
+    new sql.ConnectionPool(sqlConfig).connect()
+        .then(pool => {
+
+            if (req.body.Role == "doctor") {
+                return pool.request()
+                    .input('TCNo', req.body.TCNo)
+                    .input('Password', req.body.Password)
+                    .execute("LoginDoctor")
+            }
+            else if (req.body.Role == "user") {
+                return pool.request()
+                    .input('TCNo', req.body.TCNo)
+                    .input('Password', req.body.Password)
+                    .execute("Login")
+            }
+
+            else {
+                return pool.request()
+                    .input('RecordNo', req.body.RecordNo)
+                    .input('Password', req.body.Password)
+                    .execute("LoginPharmacy")
+            }
+
+        }).then(result => {
+            res.send(result.recordsets[0]);
+        })
+})
+router.post("/register", (req, res, next) => {
     res.send("Register Page");
 })
 module.exports = router;
