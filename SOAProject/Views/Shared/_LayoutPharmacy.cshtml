@@ -1,0 +1,61 @@
+﻿<!Doctype html>
+<html lang="en">
+
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/Styles/Doctor/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link href="~/Styles/Doctor/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/Doctor/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+</head>
+
+<body style="background-color: #dee2e6;">
+    <ul id="mySidebar" class="sidebar">
+        <li>
+            <span class="openbtn"><i id="open-hide-bar" class="fas fa-bars"></i></span>
+        </li>
+
+        <li>
+            <a href="/Pharmacy/Index">
+                <i class="fas fa-user-md"></i>
+                <span class="text-collapse">
+                    Teslim Edilecekler
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Recipes","Pharmacy", new { @isDelivered = true })">
+                <i class="fas fa-medkit"></i>
+                <span class="text-collapse">
+                    Teslim Edilenler
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="/Pharmacy/Users">
+                <i class="fas fa-address-card"></i>
+                <span class="text-collapse">
+                    Hastalarımız
+                </span>
+            </a>
+        </li>
+    </ul>
+
+    <div id="main">
+        @RenderBody()
+    </div>
+
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Styles/Doctor/script.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/toastrconfig.js"></script>
+
+</body>
+
+</html>
