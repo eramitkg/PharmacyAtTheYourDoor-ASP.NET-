@@ -16,7 +16,6 @@ namespace SOAProject.Models
             return recipeOp ?? (recipeOp = new RecipeOperation());
         }
 
-
         public List<Recipe> GetRecipes(string url, Dictionary<string, string> dictionary)
         {
             var result = ApiConnect.Post(url, dictionary);
@@ -57,6 +56,19 @@ namespace SOAProject.Models
             }
 
             return recipes2;
+        }
+
+        public List<User> GetUsers(string url, Dictionary<string, string> dictionary)
+        {
+            var result = ApiConnect.Post(url, dictionary);
+
+            List<User> userList = JsonConvert.DeserializeObject<List<User>>(result.Result.ToString());
+
+            if (userList.Count > 0)
+            {
+                return userList;
+            }
+            return null;
         }
     }
 }

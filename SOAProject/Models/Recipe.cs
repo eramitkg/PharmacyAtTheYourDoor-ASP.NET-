@@ -13,6 +13,7 @@ namespace SOAProject.Models
         public string USAGE { get; set; }
         public DateTime ISSUEDATE { get; set; }
         public string DEPARTMENT { get; set; }
+        public string TC { get; set; }
         public string USERNAME { get; set; }
         public string SURNAME { get; set; }
     }
