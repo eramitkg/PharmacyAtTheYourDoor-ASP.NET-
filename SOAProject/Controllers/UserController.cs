@@ -15,6 +15,7 @@ namespace SOAProject.Controllers
         public static Pharmacy pharmacy;
 
         private static int patientId;
+        private static int pharmacyId;
         // GET: User
         [HttpGet]
         public ActionResult Login()
@@ -50,7 +51,7 @@ namespace SOAProject.Controllers
                 else if(role == "pharmacy")
                 {
                     ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Giriş Yapıldı", ToastrType.Success));
-                    return RedirectToAction("About", "Home");
+                    return RedirectToAction("Recipes", "Pharmacy", new { @id = pharmacyId });
                 }
                 else
                 {
@@ -127,6 +128,7 @@ namespace SOAProject.Controllers
                 if (pharmacies.Count > 0)
                 {
                     pharmacy = pharmacies[0];
+                    pharmacyId = pharmacy.PHARMACYID;
                     return true;
                 }
                 return false;
