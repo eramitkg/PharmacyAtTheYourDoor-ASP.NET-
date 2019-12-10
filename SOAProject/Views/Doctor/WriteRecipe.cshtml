@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Reçete Yaz";
+    Layout = "~/Views/Shared/_LayoutDoctor.cshtml";
+}
+
+<div id="main">
+
+    @using (Html.BeginForm("WriteRecipe", "Doctor", FormMethod.Post))
+    {
+        <div class="input-group mb-3">
+            <input type="text" name="txtTcNo" class="form-control col-5" placeholder="TC NO (Yeni Kimlikler İçin Kimlik NO)" required>
+            <div class="input-group-append">
+                <a class="btn btn-success" id="btnCreateRecipe">Reçete Oluştur</a>
+            </div>
+        </div>
+        <div id="tableDiv" style="display:none">
+            <table class="table  table-light">
+                <thead class="table-dark">
+
+                    @*<th class="thClass" scope="col">TC</th>*@
+                <th class="thClass" scope="col">İlaç</th>
+                <th class="thClass" scope="col">Tür</th>
+                <th class="thClass" scope="col">Kullanım</th>
+                <th class="thClass" scope="col"></th>
+
+                </thead>
+                <tbody class="tbody">
+                    <tr>
+                        @*<td> <input id="customInput" class="form-control" type="text" placeholder="TC"> </td>*@
+                        <td> <input name="txtMedName" class="form-control" type="text" style="text-align:center" placeholder="İlaç" required> </td>
+                        <td> <input name="txtMedType" class="form-control" type="text" style="text-align:center" placeholder="Tür" required> </td>
+                        <td>
+                            <input name="txtMedUsage" type="text" style="text-align:center" class="form-control" id="usingMed" placeholder="Kullanım" required>
+                        </td>
+                        <div>
+                            <td>
+                                <span class="fa-stack fa-1x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </td>
+                        </div>
+                    </tr>
+                </tbody>
+
+            </table>
+            <button id="btnWriteRecipe" type="submit" class="btn btn-danger float-right">
+                Kaydet
+            </button>
+        </div>
+    }
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="~/Styles/Doctor/script.js"></script>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+    $(document).on("click", "#btnCreateRecipe", function () {
+        $("#tableDiv").show();
+    });
+</script>
