@@ -1,5 +1,5 @@
 var sqlConfig = {
-    server: '30.30.236.189', //IP NUMARANIZI GİRİNİZ
+    server: '127.0.0.1', //IP NUMARANIZI GİRİNİZ
     database: 'PHARMACY',
     user: 'deneme', //KENDİ KULLANICI ADINIZ VE SİFRENİZ
     password: 'test', 

@@ -7,7 +7,7 @@ namespace SOAProject.Models
 {
     public class Doctor
     {
-        public int ID { get; set; }
+        public int DOCTORID { get; set; }
         public string NAME { get; set; }
         public string SURNAME { get; set; }
         public string TC { get; set; }

@@ -289,7 +289,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-    <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutDoctor.cshtml" />
     <Content Include="Views\Shared\_LayoutPatient.cshtml" />
     <Content Include="Views\Patient\Recipes.cshtml" />
@@ -300,6 +299,9 @@
     <Content Include="Views\Pharmacy\RecipeDetail.cshtml" />
     <Content Include="Views\Pharmacy\Users.cshtml" />
     <Content Include="Views\Pharmacy\UserDetail.cshtml" />
+    <Content Include="Views\Doctor\Recipes.cshtml" />
+    <Content Include="Views\Doctor\RecipeDetail.cshtml" />
+    <Content Include="Views\Doctor\WriteRecipe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

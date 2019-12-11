@@ -16,6 +16,8 @@ namespace SOAProject.Controllers
 
         private static int patientId;
         private static int pharmacyId;
+        private static int doctorId;
+
         // GET: User
         [HttpGet]
         public ActionResult Login()
@@ -41,7 +43,7 @@ namespace SOAProject.Controllers
                     //AddCookie("access_token",res.Token);
                     //AddCookie("User_ID", res.User_ID);
                     ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Giriş Yapıldı", ToastrType.Success));
-                    return RedirectToAction("Index", "Doctor");
+                    return RedirectToAction("Recipes", "Doctor", new { @id = doctorId });
                 }
                 else if(role == "user")
                 {
@@ -109,6 +111,7 @@ namespace SOAProject.Controllers
                 if (doctors.Count > -1)
                 {
                     doctor = doctors[0];
+                    doctorId = doctor.DOCTORID;
                     return true;
                 }
                 return false;
