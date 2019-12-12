@@ -51,7 +51,6 @@ namespace SOAProject.Models
                 var content = new FormUrlEncodedContent(keyValuePairs);
 
                 var response = client.PostAsync(ConnString + ApiUrl, content);
-
                 var responseString = response.Result.Content.ReadAsStringAsync();
                 var err = responseString.Result;
                 try

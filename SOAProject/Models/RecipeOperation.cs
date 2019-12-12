@@ -19,7 +19,6 @@ namespace SOAProject.Models
         public bool CreateRecipe(string url, Dictionary<string, string> dictionary)
         {
             var result = ApiConnect.Post(url, dictionary);
-
             if (result.IsCompleted)
             {
                 return true;

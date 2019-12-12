@@ -1,5 +1,4 @@
-﻿@using SOAProject.Models
-@model List<SOAProject.Models.Recipe>
+﻿@model List<SOAProject.Models.Recipe>
 
 @{
     ViewBag.Title = "Reçetelerim";
@@ -13,13 +12,14 @@
             <tr>
                 <th><i class="fas fa-leaf mr-2 teal-text" aria-hidden="true"></i>Hasta</th>
                 <th><i class="fas fa-leaf mr-2 teal-text" aria-hidden="true"></i>Tarih</th>
-                <th><i class="fas fa-first-aid"></i></i></th>
+                <th><i class="fas fa-first-aid"></i></th>
 
             </tr>
         </thead>
         <tbody>
             @foreach (var recipe in Model)
             {
+
                 <tr>
                     <td>@recipe.USERNAME  @recipe.SURNAME</td>
                     <td>@recipe.ISSUEDATE.ToString("dd-MM-yyyy")</td>

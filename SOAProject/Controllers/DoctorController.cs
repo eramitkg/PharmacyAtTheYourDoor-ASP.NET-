@@ -22,7 +22,7 @@ namespace SOAProject.Controllers
             RecipeOperation recipeOp = RecipeOperation.getInstance();
             recipesList = recipeOp.GetRecipes("/getmedicinesfordoctor", new Dictionary<string, string>
             {
-                { "doctorId", id.ToString()}
+                { "doctorId", doctorId.ToString()}
             });
 
             return View(recipesList);
