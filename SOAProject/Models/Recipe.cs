@@ -8,6 +8,7 @@ namespace SOAProject.Models
     public class Recipe
     {
         public int RECIPEID { get; set; }
+        public int TC { get; set; }
         public string MEDICINENAME { get; set; }
         public string TYPE { get; set; }
         public string USAGE { get; set; }
