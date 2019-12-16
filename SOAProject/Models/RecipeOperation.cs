@@ -16,17 +16,7 @@ namespace SOAProject.Models
             return recipeOp ?? (recipeOp = new RecipeOperation());
         }
 
-        public bool CreateRecipe(string url, Dictionary<string, string> dictionary)
-        {
-            var result = ApiConnect.Post(url, dictionary);
-
-            if (result.IsCompleted)
-            {
-                return true;
-            }
-
-            return false;
-        }
+       
 
         public List<Recipe> GetRecipes(string url, Dictionary<string, string> dictionary)
         {
