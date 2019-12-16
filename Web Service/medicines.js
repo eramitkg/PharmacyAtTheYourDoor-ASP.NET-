@@ -38,21 +38,29 @@ router.post("/getmedicinesfordoctor",(req,res,next)=>{
     })  
 });
 
-
 router.post("/createrecipefordoctor",(req,res,next)=>{
     new sql.ConnectionPool(sqlConfig).connect()
     .then(pool =>{  
             return pool.request()
             .input('tcNo', req.body.tcNo)
             .input('doctorId', req.body.doctorId)
+            .execute("CreateRecipeForDoctor")
+    }).then(result =>{
+        res.send(result.returnValue.toString());
+    })
+});
+
+router.post("/addmedicinetorecipefordoctor",(req,res,next)=>{
+    new sql.ConnectionPool(sqlConfig).connect()
+    .then(pool =>{  
+            return pool.request()
             .input('medName', req.body.medName)
             .input('medType', req.body.medType)
             .input('medUsage', req.body.medUsage)
-            .execute("CreateRecipeForDoctor")
+            .execute("AddMedicineToRecipeForDoctor")
     }).then(result =>{
         res.send(result.recordsets[0]);
     })
 });
-
 
 module.exports = router;
