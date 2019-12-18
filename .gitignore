@@ -155,8 +155,9 @@ PublishScripts/
 *.nupkg
 # The packages folder can be ignored because of Package Restore
 **/packages/*
-# except build/, which is used as an MSBuild target.
+# except build/, which is used as an MSBuild target and except tools for csc.exe failure
 !**/packages/build/
+!**/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1/
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/packages/repositories.config
 # NuGet v3's project.json files produces more ignoreable files
