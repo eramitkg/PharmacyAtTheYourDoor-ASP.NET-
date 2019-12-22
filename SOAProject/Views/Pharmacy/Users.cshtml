@@ -1,5 +1,5 @@
 ﻿@using SOAProject.Models
-@model List<SOAProject.Models.User>
+@model List<SOAProject.Models.Patient>
 @{
     ViewBag.Title = "Hastalarımız";
     Layout = "~/Views/Shared/_LayoutPharmacy.cshtml";
@@ -15,14 +15,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in Model)
+            @foreach (var patient in Model)
             {
                 <tr>
-                    <td>@user.TC</td>
-                    <td>@user.USERNAME @user.SURNAME</td>
+                    <td>@patient.TC</td>
+                    <td>@patient.USERNAME @patient.SURNAME</td>
                     <td>
                         <button class="btn btn-outline-dark modalLink" type="button" data-toggle="modal" data-target="#modalDiv"
-                                aria-expanded="false" aria-controls="modalDiv" onclick="Open(@user.USERID)">
+                                aria-expanded="false" aria-controls="modalDiv" onclick="Open(@patient.USERID)">
                             Detaylar
                         </button>
                     </td>
@@ -54,7 +54,7 @@
     function Open(currentId) {
         $.ajax({
             type: "GET",
-            url: '@Url.Action("UserDetail", "Pharmacy")',
+            url: '@Url.Action("PatientDetail", "Pharmacy")',
             data: { id: currentId },
             success: function (data) {
                 $('#Preview').html(data);

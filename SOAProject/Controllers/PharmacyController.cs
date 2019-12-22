@@ -7,28 +7,20 @@ using SOAProject.Models;
 
 namespace SOAProject.Controllers
 {
+    [Authorize(Roles = "pharmacy")]
     public class PharmacyController : Controller
     {
-        private static int? pharmacyId = 0; 
         private static List<Recipe> recipeList;
-        private static List<User> userList;
+        private static List<Patient> patientList;
 
-        public void Index()
+        public ActionResult Recipes()
         {
-            Response.Redirect("~/Pharmacy/Recipes/" + pharmacyId);
-        }
-        public ActionResult Recipes(int? id, bool isDelivered = false)
-        {
-            int delivered = isDelivered ? 1 : 0;
-            
-            if(id != null)
-                pharmacyId = id;
-
+            int pharmacyId = GetPharmacyId(); 
             RecipeOperation recipeOp = RecipeOperation.getInstance();
             recipeList = recipeOp.GetRecipes("/getmedicinesforpharmacy", new Dictionary<string, string>
             {
                 { "PharmacyId", pharmacyId.ToString()},
-                { "IsDelivered", delivered.ToString()}
+                { "IsDelivered", false.ToString()}
             });
 
             return View(recipeList);
@@ -48,29 +40,35 @@ namespace SOAProject.Controllers
             return PartialView("RecipeDetail", foundedRecipe);
         }
 
-        public ActionResult Users()
+        public ActionResult Patients()
         {
+            int pharmacyId = GetPharmacyId();
             RecipeOperation recipeOp = RecipeOperation.getInstance();
-            userList = recipeOp.GetUsers("/getusersforpharmacy", new Dictionary<string, string>
+            patientList = recipeOp.GetPatients("/getpatientsforpharmacy", new Dictionary<string, string>
             {
                 { "PharmacyId", pharmacyId.ToString()}
             });
 
-            return View(userList);
+            return View(patientList);
         }
 
-        public ActionResult UserDetail(int id)
+        public ActionResult PatientDetail(int id)
         {
-            User foundedUser = null;
-            foreach (var user in userList)
+            Patient foundedPatient = null;
+            foreach (var patient in patientList)
             {
-                if (user.USERID == id)
+                if (patient.USERID == id)
                 {
-                    foundedUser = user;
+                    foundedPatient = patient;
                     break;
                 }
             }
-            return PartialView("UserDetail", foundedUser);
+            return PartialView("PatientDetail", foundedPatient);
+        }
+
+        private int GetPharmacyId()
+        {
+            return Convert.ToInt32(Session["PharmacyId"]);
         }
     }
 }

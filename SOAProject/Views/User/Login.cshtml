@@ -1,5 +1,4 @@
-﻿@model SOAProject.Models.User
-@{
+﻿@{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -19,7 +18,7 @@
 
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-outline-danger active">
-                            <input type="radio" name="role" id="option1" value="user" autocomplete="off" checked> Hasta
+                            <input type="radio" name="role" id="option1" value="patient" autocomplete="off" checked> Hasta
                         </label>
                         <label class="btn btn-outline-danger">
                             <input type="radio" name="role" id="option2" value="doctor"autocomplete="off"> Doktor
@@ -41,7 +40,8 @@
                     <div class="input-group-append">
                         <span class="input-group-text"><i class="icon-key"></i></span>
                     </div>
-                    @Html.TextBoxFor(model => model.PASSWORD, new { @class = "form-control input_pass", placeholder = "Şifre", style = "border-color: transparent",type = "password" })
+                    <input type ="password" class="form-control input_pass" placeholder = "Şifre", name="Password"  style = "border-color: transparent" />
+                    
 
                 </div>
 

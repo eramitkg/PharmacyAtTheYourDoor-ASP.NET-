@@ -5,20 +5,18 @@ using SOAProject.Models;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using System.Web.Security;
 
 namespace SOAProject.Controllers
 {
+    [AllowAnonymous]
     public class UserController : Controller
     {
-        public static User user;
+        public static Patient patient;
         public static Doctor doctor;
         public static Pharmacy pharmacy;
 
-        private static int patientId;
-        private static int pharmacyId;
-        private static int doctorId;
-
-        // GET: User
+        // GET: Patient
         [HttpGet]
         public ActionResult Login()
         {
@@ -40,20 +38,18 @@ namespace SOAProject.Controllers
             {
                 if(role == "doctor")
                 {
-                    //AddCookie("access_token",res.Token);
-                    //AddCookie("User_ID", res.User_ID);
                     ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Giriş Yapıldı", ToastrType.Success));
-                    return RedirectToAction("Recipes", "Doctor", new { @id = doctorId });
+                    return RedirectToAction("Recipes", "Doctor");
                 }
-                else if(role == "user")
+                else if(role == "patient")
                 {
                     ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Giriş Yapıldı", ToastrType.Success));
-                    return RedirectToAction("Recipes", "Patient", new { @id = patientId });
+                    return RedirectToAction("Recipes", "Patient");
                 }
                 else if(role == "pharmacy")
                 {
                     ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Giriş Yapıldı", ToastrType.Success));
-                    return RedirectToAction("Recipes", "Pharmacy", new { @id = pharmacyId });
+                    return RedirectToAction("Recipes", "Pharmacy");
                 }
                 else
                 {
@@ -78,7 +74,7 @@ namespace SOAProject.Controllers
         
         public bool Login(string loginNo,string Password,string Role)
         {
-            if (Role =="user")
+            if (Role =="patient")
             {
                 var result = ApiConnect.Post("/login", new Dictionary<string, string>
                 {
@@ -87,11 +83,12 @@ namespace SOAProject.Controllers
                     {"Role",Role}
                 });
 
-                List<User> users = JsonConvert.DeserializeObject<List<User>>(result.Result.ToString());
-                if (users.Count > 0)
+                List<Patient> patients = JsonConvert.DeserializeObject<List<Patient>>(result.Result.ToString());
+                if (patients.Count > 0)
                 {
-                    user = users[0];
-                    patientId = user.PATIENTID;
+                    patient = patients[0];
+                    FormsAuthentication.SetAuthCookie(Role.ToString(), false);
+                    Session["PatientID"] = patient.PATIENTID;
                     return true;
                 }
                 return false;
@@ -108,10 +105,11 @@ namespace SOAProject.Controllers
                 });
 
                 List<Doctor> doctors = JsonConvert.DeserializeObject<List<Doctor>>(result.Result.ToString());
-                if (doctors.Count > -1)
+                if (doctors.Count > 0)
                 {
                     doctor = doctors[0];
-                    doctorId = doctor.DOCTORID;
+                    FormsAuthentication.SetAuthCookie(Role.ToString(), false);
+                    Session["DoctorID"] = doctor.DOCTORID;
                     return true;
                 }
                 return false;
@@ -131,7 +129,8 @@ namespace SOAProject.Controllers
                 if (pharmacies.Count > 0)
                 {
                     pharmacy = pharmacies[0];
-                    pharmacyId = pharmacy.PHARMACYID;
+                    FormsAuthentication.SetAuthCookie(Role.ToString(), false);
+                    Session["PharmacyId"] = pharmacy.PHARMACYID;
                     return true;
                 }
                 return false;
@@ -143,11 +142,12 @@ namespace SOAProject.Controllers
            
         }
 
-        public void AddCookie(string cookieName,string cookieValue)
+
+        public ActionResult Logout()
         {
-            HttpCookie cookie = new HttpCookie(cookieName, cookieValue);
-            cookie.Expires = DateTime.Now.AddYears(1);
-            HttpContext.Response.Cookies.Add(cookie);
-        }    
+            ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Çıkış Yapıldı", ToastrType.Success));
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
+        }
     }
 }

@@ -7,26 +7,20 @@ using SOAProject.Models;
 
 namespace SOAProject.Controllers
 {
+    [Authorize(Roles = "patient")]
     public class PatientController : Controller
     {
-        private static int patientId;
         private static List<Recipe> recipesList;
 
-        public void Index()
-        { 
-            Response.Redirect("~/Patient/Recipes/" + patientId);
-        }
-
-        public ActionResult Recipes(int id, bool isDelivered = false)
+        public ActionResult Recipes()
         {
-            int delivered = isDelivered ? 1 : 0;
-            patientId = id;
+            int patientId = GetPatientId();
 
             RecipeOperation recipeOp = RecipeOperation.getInstance();
             recipesList = recipeOp.GetRecipes("/getmedicinesforpatient", new Dictionary<string, string>
             {
-                { "PatientId", id.ToString()},
-                { "IsDelivered", delivered.ToString()}
+                { "PatientId", patientId.ToString()},
+                { "IsDelivered", false.ToString()}
             });
 
             return View(recipesList);
@@ -44,6 +38,10 @@ namespace SOAProject.Controllers
                 }
             }
             return PartialView("RecipeDetail", foundedRecipe);
+        }
+        private int GetPatientId()
+        {
+            return Convert.ToInt32(Session["PatientID"]);
         }
     }
 }

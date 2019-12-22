@@ -27,11 +27,11 @@ router.post("/login", (req, res, next) => {
                     .input('Password', req.body.Password)
                     .execute("LoginDoctor")
             }
-            else if (req.body.Role == "user") {
+            else if (req.body.Role == "patient") {
                 return pool.request()
                     .input('TCNo', req.body.TCNo)
                     .input('Password', req.body.Password)
-                    .execute("Login")
+                    .execute("LoginPatient")
             }
 
             else {

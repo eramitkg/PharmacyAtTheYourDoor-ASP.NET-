@@ -60,15 +60,15 @@ namespace SOAProject.Models
             return recipes2;
         }
 
-        public List<User> GetUsers(string url, Dictionary<string, string> dictionary)
+        public List<Patient> GetPatients(string url, Dictionary<string, string> dictionary)
         {
             var result = ApiConnect.Post(url, dictionary);
 
-            List<User> userList = JsonConvert.DeserializeObject<List<User>>(result.Result.ToString());
+            List<Patient> patientList = JsonConvert.DeserializeObject<List<Patient>>(result.Result.ToString());
 
-            if (userList.Count > 0)
+            if (patientList.Count > 0)
             {
-                return userList;
+                return patientList;
             }
             return null;
         }

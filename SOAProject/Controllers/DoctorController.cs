@@ -6,25 +6,20 @@ using Microsoft.Ajax.Utilities;
 
 namespace SOAProject.Controllers
 {
+    [Authorize(Roles ="doctor")]
     public class DoctorController : Controller
     {
-        private static int doctorId;
         private static List<Recipe> recipesList;
 
-        public void Index()
-        {
-            Response.Redirect("~/Doctor/Recipes/" + doctorId);
-        }
 
-
-        public ActionResult Recipes(int id)
+        public ActionResult Recipes()
         {
-            doctorId = id;
+            int doctorId = GetDoctorID();
 
             RecipeOperation recipeOp = RecipeOperation.getInstance();
             recipesList = recipeOp.GetRecipes("/getmedicinesfordoctor", new Dictionary<string, string>
             {
-                { "doctorId", id.ToString()}
+                { "doctorId", doctorId.ToString()}
             });
 
             return View(recipesList);
@@ -53,7 +48,7 @@ namespace SOAProject.Controllers
         public ActionResult WriteRecipe(FormCollection form)
         {
             RecipeOperation reOP = RecipeOperation.getInstance();
-
+            string doctorId = GetDoctorID().ToString();
 
             var result =ApiConnect.Post("/createrecipefordoctor", new Dictionary<string, string>
             {
@@ -64,7 +59,7 @@ namespace SOAProject.Controllers
             if (Convert.ToInt16(result.Result) == -1)
             {
                 ToastrService.AddToUserQueue(new Toastr("Kullanıcı Bulunamadı", "Reçete Yazılamadı.", ToastrType.Error));
-                return RedirectToAction("Recipes", "Doctor", new { @id = doctorId });
+                return RedirectToAction("Recipes", "Doctor");
             }
                 
 
@@ -99,6 +94,11 @@ namespace SOAProject.Controllers
 
             return null;
 
+        }
+    
+        private int GetDoctorID()
+        {
+            return Convert.ToInt32(Session["DoctorID"]);
         }
     }
 }

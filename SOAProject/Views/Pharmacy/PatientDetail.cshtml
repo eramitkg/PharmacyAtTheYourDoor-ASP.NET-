@@ -1,0 +1,27 @@
+﻿@model SOAProject.Models.Patient
+
+@{
+    Layout = null;
+}
+
+<div class="container-fluid">
+    <table class="table table-light-dark">
+        <thead class="table-dark">
+            <tr>
+                <th>Telefon</th>
+                <th>Adres</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>@Model.PHONE</td>
+                <td>@Model.SUBSTREET Sk. @Model.STREET Cd. @Model.NEIGBORHOOD Mh. @Model.COUNTY-@Model.PROVINCE</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
+</div>
