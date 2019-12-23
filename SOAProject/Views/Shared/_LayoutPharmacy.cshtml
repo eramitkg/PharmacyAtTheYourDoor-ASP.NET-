@@ -43,6 +43,14 @@
                 </span>
             </a>
         </li>
+        <li>
+            <a href="/User/Logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="text-collapse">
+                    Çıkış
+                </span>
+            </a>
+        </li>
     </ul>
 
     <div id="main">
@@ -55,7 +63,18 @@
     <script src="~/Styles/Doctor/script.js"></script>
     <script src="~/Scripts/toastr.min.js"></script>
     <script src="~/Scripts/toastrconfig.js"></script>
+    <script type="text/javascript" language="javascript">
+        function DisableBackButton() {
+            window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function () { void (0) }
+    </script>
+    @ToastrHelper.ProcessToastrs()
 
+    @RenderSection("_Scripts", false)
 </body>
 
 </html>

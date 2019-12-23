@@ -20,10 +20,8 @@ namespace SOAProject.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            for (int i = 0; i < 10; i++)
-            {
-                BaseObject.Session += Guid.NewGuid().ToString().Replace("-", "");
-            }
+            FormsAuthentication.SignOut();
+            Session.Abandon();
             return View();
         }
 
@@ -36,31 +34,21 @@ namespace SOAProject.Controllers
             string role = form["role"];
             if (Login(loginNo, password, role))
             {
-                if(role == "doctor")
-                {
-                    ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Giriş Yapıldı", ToastrType.Success));
+                ToastrService.AddToUserQueue(new Toastr("Sisteme başarılı bir şekilde giriş yapıldı", "Hoşgeldiniz", ToastrType.Success));
+                TempData["login"] = "success";
+                if (role == "doctor")
                     return RedirectToAction("Recipes", "Doctor");
-                }
-                else if(role == "patient")
-                {
-                    ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Giriş Yapıldı", ToastrType.Success));
-                    return RedirectToAction("Recipes", "Patient");
-                }
-                else if(role == "pharmacy")
-                {
-                    ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Giriş Yapıldı", ToastrType.Success));
+
+
+                else if (role == "pharmacy")
                     return RedirectToAction("Recipes", "Pharmacy");
-                }
+
                 else
-                {
-                    ToastrService.AddToUserQueue(new Toastr("Lütfen giriş bilgilerinizi kontrol ediniz ", "Giriş Yapılamadı", ToastrType.Error));
-                }
-                
+                    return RedirectToAction("Recipes", "Patient"); 
             }
             else
-            {
                 ToastrService.AddToUserQueue(new Toastr("Lütfen giriş bilgilerinizi kontrol ediniz ", "Giriş Yapılamadı", ToastrType.Error));
-            }
+            
 
             return View();
         }
@@ -145,8 +133,9 @@ namespace SOAProject.Controllers
 
         public ActionResult Logout()
         {
-            ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Çıkış Yapıldı", ToastrType.Success));
+            ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Çıkış Yapıldı", ToastrType.Info));
             FormsAuthentication.SignOut();
+            Session.Abandon();
             return RedirectToAction("Login");
         }
     }

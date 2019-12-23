@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet" />
     <link href="~/Styles/Home/css/bootstrap.min.css" rel="stylesheet" />
@@ -109,11 +108,24 @@
     <script src="~/Styles/Home/js/owl.carousel.min.js"></script>
     <script src="~/Styles/Home/js/jquery.magnific-popup.min.js"></script>
     <script src="~/Styles/Home/js/main.js"></script>
-    
+
     <script src="~/Scripts/toastr.min.js"></script>
     <script src="~/Scripts/toastrconfig.js"></script>
 
+    @*Önceki sayfaya gitmesini önlemesi için yazıldı*@
+    <script type="text/javascript" language="javascript">
+        function DisableBackButton() {
+            window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function () { void (0) }
+    </script>
+
     @ToastrHelper.ProcessToastrs()
+
+    @RenderSection("_Scripts", false)
 
 </body>
 </html>

@@ -3,6 +3,7 @@ using SOAProject.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
+using System.Web;
 
 namespace SOAProject.Controllers
 {
@@ -11,7 +12,7 @@ namespace SOAProject.Controllers
     {
         private static List<Recipe> recipesList;
 
-
+        
         public ActionResult Recipes()
         {
             int doctorId = GetDoctorID();
@@ -95,10 +96,13 @@ namespace SOAProject.Controllers
             return null;
 
         }
+
     
         private int GetDoctorID()
         {
             return Convert.ToInt32(Session["DoctorID"]);
         }
+
+        
     }
 }

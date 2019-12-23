@@ -62,7 +62,20 @@
     <script src="~/Styles/Doctor/script.js"></script>
     <script src="~/Scripts/toastr.min.js"></script>
     <script src="~/Scripts/toastrconfig.js"></script>
+
+    @*Önceki sayfaya gitmesini önlemesi için yazıldı*@
+    <script type="text/javascript" language="javascript">
+        function DisableBackButton() {
+            window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function () { void (0) }
+    </script>
     @ToastrHelper.ProcessToastrs()
+
+    @RenderSection("_Scripts", false)
 
 
 </body>

@@ -13,12 +13,12 @@ namespace SOAProject
 
         private static string GetSessionId()
         {
-            return BaseObject.Session;
+            return HttpContext.Current.Session.SessionID;
         }
 
         public static void AddToUserQueue(Toastr toastr)
         {
-            string sessionId = BaseObject.Session;
+            string sessionId = GetSessionId();
             toastrs.Add((Date: DateTime.Now, SessionId: GetSessionId(), Toastr: toastr));
         }
 
@@ -30,7 +30,7 @@ namespace SOAProject
                 Title = title,
                 Type = type,
             });
-
+           
         }
 
         public static bool HasUserQueue()
