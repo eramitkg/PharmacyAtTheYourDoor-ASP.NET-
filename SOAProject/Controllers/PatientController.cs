@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using SOAProject.Models;
 
 namespace SOAProject.Controllers
@@ -47,6 +48,61 @@ namespace SOAProject.Controllers
             }
             return RedirectToAction("Recipes", "Patient");
 
+        }
+       
+        public ActionResult Settings()
+        {
+            string patientID = GetPatientId().ToString();
+
+            var result = ApiConnect.Post("/getPatientInformation", new Dictionary<string, string>
+            {
+                { "PatientID", patientID}
+            });
+
+            List<Patient> patients = JsonConvert.DeserializeObject<List<Patient>>(result.Result.ToString());
+
+            var getPharmacies = ApiConnect.Get("/getPharmacies");
+
+            List<Pharmacy> pharmacies = JsonConvert.DeserializeObject<List<Pharmacy>>(getPharmacies.Result.ToString());
+
+            List<SelectListItem> pharmaciesSelectList = new List<SelectListItem>();
+            foreach (var item in pharmacies)
+            {
+                if (patients[0].PHARMACYNAME != item.PHARMACYNAME)
+                    pharmaciesSelectList.Add(new SelectListItem { Text = item.PHARMACYNAME, Value = item.PHARMACYID.ToString() });
+
+
+                else
+                    pharmaciesSelectList.Add(new SelectListItem { Text = item.PHARMACYNAME, Value = item.PHARMACYID.ToString(), Selected = true });
+            }
+
+            ViewBag.Pharmacy = pharmaciesSelectList;
+
+            
+           
+
+            return View(patients[0]);
+        }
+        
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Settings(FormCollection form)
+        {
+            string pharmacyID = form["Pharmacy"].ToString();
+            string patientId = GetPatientId().ToString();
+
+            var result = ApiConnect.Post("/changePharmacy", new Dictionary<string, string>
+            {
+                {"PatientID", patientId},
+                {"PharmacyID",pharmacyID}
+            });
+
+            if (result.Result.ToString() == "1")
+            {
+                ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Eczane Değiştirildi", ToastrType.Info));
+                return RedirectToAction("Recipes", "Patient");
+            }
+            return RedirectToAction("Recipes", "Patient");
         }
         public ActionResult RecipeDetail(int id)
         {

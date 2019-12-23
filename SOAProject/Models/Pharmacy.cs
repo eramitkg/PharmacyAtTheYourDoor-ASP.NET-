@@ -8,7 +8,7 @@ namespace SOAProject.Models
     public class Pharmacy
     {
         public int PHARMACYID { get; set; }
-        public string NAME { get; set; }
+        public string PHARMACYNAME { get; set; }
         public string Phone { get; set; }
         public string NEIGBORHOOD { get; set; }
         public string STREET { get; set; }

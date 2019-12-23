@@ -234,6 +234,7 @@
     <Content Include="Styles\Home\js\slick.min.js" />
     <Content Include="Styles\Home\login.html" />
     <Content Include="Styles\Home\register.html" />
+    <Content Include="Styles\img\user.png" />
     <Content Include="Web.config" />
     <Content Include="Styles\Home\.DS_Store" />
     <Content Include="Styles\Home\css\bootstrap.min.css.map" />
@@ -303,6 +304,7 @@
     <Content Include="Views\Doctor\Recipes.cshtml" />
     <Content Include="Views\Doctor\RecipeDetail.cshtml" />
     <Content Include="Views\Doctor\WriteRecipe.cshtml" />
+    <Content Include="Views\Patient\Settings.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

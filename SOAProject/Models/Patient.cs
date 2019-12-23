@@ -19,5 +19,6 @@ namespace SOAProject.Models
         public string STREET { get; set; }
         public string PROVINCE { get; set; }
         public string COUNTY { get; set; }
+        public string PHARMACYNAME { get; set; }
     }
 }

@@ -48,4 +48,39 @@ router.post("/login", (req, res, next) => {
 router.post("/register", (req, res, next) => {
     res.send("Register Page");
 })
+
+router.post("/getPatientInformation",(req,res,next)=>{
+    new sql.ConnectionPool(sqlConfig).connect()
+    .then(pool =>{  
+            return pool.request()
+            .input('PatientID', req.body.PatientID)
+            .execute("GetPatientInformation")
+    }).then(result =>{
+        res.send(result.recordsets[0]);
+    })
+}); 
+
+router.get("/getPharmacies",(req,res,next)=>{
+    new sql.ConnectionPool(sqlConfig).connect()
+    .then(pool =>{  
+            return pool.request()
+            .execute("GetPharmacies")
+    }).then(result =>{
+        res.send(result.recordsets[0]);
+    })
+}); 
+
+router.post("/changePharmacy",(req,res,next)=>{
+    new sql.ConnectionPool(sqlConfig).connect()
+    .then(pool =>{  
+            return pool.request()
+            .input('PatientID', req.body.PatientID)
+            .input('PharmacyID', req.body.PharmacyID)
+            .execute("ChangePharmacy")
+    }).then(result =>{
+        res.send(result.returnValue.toString());
+    })
+}); 
+
+
 module.exports = router;
