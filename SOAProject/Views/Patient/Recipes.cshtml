@@ -16,20 +16,33 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var recipe in Model)
+            @using (Html.BeginForm("Recipes", "Patient", FormMethod.Post))
             {
-                <tr>
-                    <td>@recipe.DEPARTMENT</td>
-                    <td>@recipe.ISSUEDATE.ToString("dd-MM-yyyy")</td>
-                    <td>
-                        <button class="btn btn-outline-dark modalLink" type="button" data-toggle="modal" data-target="#modalDiv"
-                                aria-expanded="false" aria-controls="modalDiv" onclick="Open(@recipe.RECIPEID)">
-                            Detaylar
-                        </button>
-                    </td>
-                </tr>
+                @Html.AntiForgeryToken()
+                foreach (var recipe in Model)
+                {
+                    <tr>
+                        <td>@recipe.DEPARTMENT</td>
+                        <td>@recipe.ISSUEDATE.ToString("dd-MM-yyyy")</td>
+                        <td>
+                            <button class="btn btn-outline-dark modalLink" type="button" data-toggle="modal" data-target="#modalDiv"
+                                    aria-expanded="false" aria-controls="modalDiv" onclick="Open(@recipe.RECIPEID)">
+                                Detaylar
+                            </button>
+
+                            @if (ViewData["delivered"].ToString() == "0")
+                            {
+                                <button class="btn btn-outline-danger" value="@recipe.RECIPEID" name="recipeID" type="submit">
+                                    İlaçlar Ulaştı
+                                </button>
+                            }
+
+                        </td>
+
+                    </tr>
+                }
             }
-        </tbody>
+            </tbody>
     </table>
 </div>
 

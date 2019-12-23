@@ -12,7 +12,7 @@ router.post("/getmedicinesforpatient",(req,res,next)=>{
             .execute("GetMedicineForPatient")
     }).then(result =>{
         res.send(result.recordsets[0]);
-    })  
+    })      
 })
 
 router.post("/getmedicinesforpharmacy",(req,res,next)=>{
@@ -62,5 +62,17 @@ router.post("/addmedicinetorecipefordoctor",(req,res,next)=>{
         res.send(result.recordsets[0]);
     })
 });
+
+router.post("/recipeDeliver",(req,res,next)=>{
+    new sql.ConnectionPool(sqlConfig).connect()
+    .then(pool =>{  
+            return pool.request()
+            .input('RecipeID', req.body.RecipeID)
+            .execute("RecipeDeliver")
+    }).then(result =>{
+        res.send(result.returnValue.toString());
+    })
+});
+
 
 module.exports = router;

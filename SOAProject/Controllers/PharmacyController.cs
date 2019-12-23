@@ -13,18 +13,23 @@ namespace SOAProject.Controllers
         private static List<Recipe> recipeList;
         private static List<Patient> patientList;
 
-        public ActionResult Recipes()
+        public ActionResult Recipes(bool isDelivered = false)
         {
-            int pharmacyId = GetPharmacyId(); 
+            int pharmacyId = GetPharmacyId();
+
+            int delivered = isDelivered ? 1 : 0;
+
             RecipeOperation recipeOp = RecipeOperation.getInstance();
             recipeList = recipeOp.GetRecipes("/getmedicinesforpharmacy", new Dictionary<string, string>
             {
                 { "PharmacyId", pharmacyId.ToString()},
-                { "IsDelivered", false.ToString()}
+                { "IsDelivered", delivered.ToString()}
             });
 
             return View(recipeList);
+            
         }
+
 
         public ActionResult RecipeDetail(int id)
         {

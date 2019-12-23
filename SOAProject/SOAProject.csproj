@@ -298,7 +298,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Pharmacy\Recipes.cshtml" />
     <Content Include="Views\Pharmacy\RecipeDetail.cshtml" />
-    <Content Include="Views\Pharmacy\Users.cshtml" />
+    <Content Include="Views\Pharmacy\Patients.cshtml" />
     <Content Include="Views\Pharmacy\PatientDetail.cshtml" />
     <Content Include="Views\Doctor\Recipes.cshtml" />
     <Content Include="Views\Doctor\RecipeDetail.cshtml" />

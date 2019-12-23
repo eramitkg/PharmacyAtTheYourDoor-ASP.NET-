@@ -3,13 +3,13 @@ const express = require('express');
 const router = express();
 const sqlConfig = require("./routes/dbConfig");
 
-router.post("/getusersforpharmacy", (req, res, next) => {
+router.post("/getpatientsforpharmacy", (req, res, next) => {
 
     new sql.ConnectionPool(sqlConfig).connect()
         .then(pool => {
             return pool.request()
                 .input('PharmacyId', req.body.PharmacyId)
-                .execute("GetUsersForPharmacy")
+                .execute("GetPatientsForPharmacy")
 
         }).then(result => {
             res.send(result.recordsets[0]);

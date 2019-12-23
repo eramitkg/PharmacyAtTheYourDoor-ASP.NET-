@@ -12,20 +12,42 @@ namespace SOAProject.Controllers
     {
         private static List<Recipe> recipesList;
 
-        public ActionResult Recipes()
+        public ActionResult Recipes(bool isDelivered = false)
         {
+
+            int delivered = isDelivered ? 1 : 0;
+            ViewData["delivered"] = delivered.ToString();
             int patientId = GetPatientId();
 
             RecipeOperation recipeOp = RecipeOperation.getInstance();
             recipesList = recipeOp.GetRecipes("/getmedicinesforpatient", new Dictionary<string, string>
             {
                 { "PatientId", patientId.ToString()},
-                { "IsDelivered", false.ToString()}
+                { "IsDelivered", delivered.ToString()}
             });
 
             return View(recipesList);
         }
 
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Recipes(FormCollection form)
+        {
+            string recipeID = form["recipeID"].ToString();
+
+            var result = ApiConnect.Post("/recipeDeliver", new Dictionary<string, string>
+            {
+                { "RecipeID", recipeID}
+            });
+
+            if (result.Result.ToString() == "1")
+            {
+                ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Teslim Bildirildi", ToastrType.Info));
+                return RedirectToAction("Recipes","Patient");
+            }
+            return RedirectToAction("Recipes", "Patient");
+
+        }
         public ActionResult RecipeDetail(int id)
         {
             Recipe foundedRecipe = null;
