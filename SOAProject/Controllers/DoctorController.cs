@@ -59,7 +59,7 @@ namespace SOAProject.Controllers
 
             if (Convert.ToInt16(result.Result) == -1)
             {
-                ToastrService.AddToUserQueue(new Toastr("Kullanıcı Bulunamadı", "Reçete Yazılamadı.", ToastrType.Error));
+                ToastrService.AddToUserQueue(new Toastr("Hasta Bulunamadı", "Reçete Yazılamadı.", ToastrType.Error));
                 return RedirectToAction("Recipes", "Doctor");
             }
                 
