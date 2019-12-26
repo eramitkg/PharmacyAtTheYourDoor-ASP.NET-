@@ -40,11 +40,11 @@ namespace SOAProject.Models
                 bool isSame = false;
                 foreach (var r in recipes2)
                 {
-                    if (recipe.RECIPEID == r.RECIPEID)
+                    if (recipe.RecipeID == r.RecipeID)
                     {
-                        r.MEDICINENAME += "-" + recipe.MEDICINENAME;
-                        r.TYPE += "-" + recipe.TYPE;
-                        r.USAGE += "-" + recipe.USAGE;
+                        r.MedicineName += "-" + recipe.MedicineName;
+                        r.Type += "-" + recipe.Type;
+                        r.Usage += "-" + recipe.Usage;
 
                         isSame = true;
                         break;

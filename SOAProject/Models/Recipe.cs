@@ -7,14 +7,14 @@ namespace SOAProject.Models
 {
     public class Recipe
     {
-        public int RECIPEID { get; set; }
-        public int TC { get; set; }
-        public string MEDICINENAME { get; set; }
-        public string TYPE { get; set; }
-        public string USAGE { get; set; }
-        public DateTime ISSUEDATE { get; set; }
-        public string DEPARTMENT { get; set; }
-        public string USERNAME { get; set; }
-        public string SURNAME { get; set; }
+        public int RecipeID { get; set; }
+        public int Tc { get; set; }
+        public string MedicineName { get; set; }
+        public string Type { get; set; }
+        public string Usage { get; set; }
+        public DateTime IssueDate { get; set; }
+        public string Departmant { get; set; }
+        public string Username { get; set; }
+        public string Surname { get; set; }
     }
 }

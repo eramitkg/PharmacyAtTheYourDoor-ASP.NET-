@@ -68,7 +68,7 @@ router.get("/getPharmacies",(req,res,next)=>{
     }).then(result =>{
         res.send(result.recordsets[0]);
     })
-}); 
+});
 
 router.post("/changePharmacy",(req,res,next)=>{
     new sql.ConnectionPool(sqlConfig).connect()

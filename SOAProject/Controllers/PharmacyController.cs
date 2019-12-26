@@ -22,7 +22,7 @@ namespace SOAProject.Controllers
             RecipeOperation recipeOp = RecipeOperation.getInstance();
             recipeList = recipeOp.GetRecipes("/getmedicinesforpharmacy", new Dictionary<string, string>
             {
-                { "PharmacyId", pharmacyId.ToString()},
+                { "PharmacyID", pharmacyId.ToString()},
                 { "IsDelivered", delivered.ToString()}
             });
 
@@ -30,13 +30,12 @@ namespace SOAProject.Controllers
             
         }
 
-
         public ActionResult RecipeDetail(int id)
         {
             Recipe foundedRecipe = null;
             foreach (var recipe in recipeList)
             {
-                if (recipe.RECIPEID == id)
+                if (recipe.RecipeID == id)
                 {
                     foundedRecipe = recipe;
                     break;
@@ -62,7 +61,7 @@ namespace SOAProject.Controllers
             Patient foundedPatient = null;
             foreach (var patient in patientList)
             {
-                if (patient.USERID == id)
+                if (patient.UserID == id)
                 {
                     foundedPatient = patient;
                     break;

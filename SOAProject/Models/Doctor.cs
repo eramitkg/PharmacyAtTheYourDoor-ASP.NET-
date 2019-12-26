@@ -7,17 +7,17 @@ namespace SOAProject.Models
 {
     public class Doctor
     {
-        public int DOCTORID { get; set; }
-        public string NAME { get; set; }
-        public string SURNAME { get; set; }
-        public string TC { get; set; }
+        public int DoctorID { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Tc{ get; set; }
         public string Phone { get; set; }
-        public string NEIGBORHOOD { get; set; }
-        public string STREET { get; set; }
-        public string SUBSTREET { get; set; }
-        public string COUNTY { get; set; }
-        public string PROVINCE { get; set; }
-        public string DEPARTMENT { get; set; }
-        public string HEALTHINSTITUTION { get; set; }
+        public string Neigborhood { get; set; }
+        public string Street { get; set; }
+        public string Substreet { get; set; }
+        public string County { get; set; }
+        public string Province { get; set; }
+        public string Departmant { get; set; }
+        public string Healthinstitution { get; set; }
     }
 }

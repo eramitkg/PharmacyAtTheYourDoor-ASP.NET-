@@ -19,30 +19,40 @@
             @using (Html.BeginForm("Recipes", "Patient", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
-                foreach (var recipe in Model)
+
+                if (Model == null)
                 {
                     <tr>
-                        <td>@recipe.DEPARTMENT</td>
-                        <td>@recipe.ISSUEDATE.ToString("dd-MM-yyyy")</td>
-                        <td>
-                            <button class="btn btn-outline-dark modalLink" type="button" data-toggle="modal" data-target="#modalDiv"
-                                    aria-expanded="false" aria-controls="modalDiv" onclick="Open(@recipe.RECIPEID)">
-                                Detaylar
-                            </button>
-
-                            @if (ViewData["delivered"].ToString() == "0")
-                            {
-                                <button class="btn btn-outline-danger" value="@recipe.RECIPEID" name="recipeID" type="submit">
-                                    İlaçlar Ulaştı
-                                </button>
-                            }
-
-                        </td>
-
+                        <td>Henüz Teslim Edilmemiş Reçeteniz Bulunmamaktadır</td>
                     </tr>
                 }
+                else
+                {
+                    foreach (var recipe in Model)
+                    {
+                        <tr>
+                            <td>@recipe.Departmant</td>
+                            <td>@recipe.IssueDate.ToString("dd-MM-yyyy")</td>
+                            <td>
+                                <button class="btn btn-outline-dark modalLink" type="button" data-toggle="modal" data-target="#modalDiv"
+                                        aria-expanded="false" aria-controls="modalDiv" onclick="Open(@recipe.RecipeID)">
+                                    Detaylar
+                                </button>
+
+                                @if (ViewData["delivered"].ToString() == "0")
+                                {
+                                    <button class="btn btn-outline-danger" value="@recipe.RecipeID" name="recipeID" type="submit">
+                                        İlaçlar Ulaştı
+                                    </button>
+                                }
+
+                            </td>
+
+                        </tr>
+                    }
+                }
             }
-            </tbody>
+        </tbody>
     </table>
 </div>
 

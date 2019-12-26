@@ -19,9 +19,9 @@ router.post("/getmedicinesforpharmacy",(req,res,next)=>{
     new sql.ConnectionPool(sqlConfig).connect()
     .then(pool =>{  
             return pool.request()
-            .input('PharmacyId', req.body.PharmacyId)
+            .input('PharmacyID', req.body.PharmacyID)
             .input('IsDelivered', req.body.IsDelivered)
-            .execute("GetMedicineForPharmacy")
+            .execute('GetMedicineForPharmacy')
     }).then(result =>{
         res.send(result.recordsets[0]);
     })  

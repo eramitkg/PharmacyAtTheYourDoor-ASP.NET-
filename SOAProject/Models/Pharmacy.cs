@@ -7,14 +7,19 @@ namespace SOAProject.Models
 {
     public class Pharmacy
     {
-        public int PHARMACYID { get; set; }
-        public string PHARMACYNAME { get; set; }
+        public int PharmacyID { get; set; }
+        public string PharmacyName { get; set; }
         public string Phone { get; set; }
-        public string NEIGBORHOOD { get; set; }
-        public string STREET { get; set; }
-        public string SUBSTREET { get; set; }
-        public string COUNTY { get; set; }
-        public string PROVINCE { get; set; }
+        public string Neigborhood { get; set; }
+        public string Street { get; set; }
+        public string Substreet { get; set; }
+        public string County { get; set; }
+        public string Province { get; set; }
+
+        public override string ToString()
+        {
+            return PharmacyName;
+        }
 
     }
 }

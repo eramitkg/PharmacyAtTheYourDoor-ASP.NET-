@@ -18,18 +18,26 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var recipe in Model)
+            @if (Model == null)
+            {
+            <tr>
+                <td>Henüz Yazılmış Reçeteniz Bulunmamaktadır</td>
+            </tr>
+            }
+            else{
+            foreach (var recipe in Model)
             {
                 <tr>
-                    <td>@recipe.USERNAME  @recipe.SURNAME</td>
-                    <td>@recipe.ISSUEDATE.ToString("dd-MM-yyyy")</td>
+                    <td>@recipe.Username  @recipe.Surname</td>
+                    <td>@recipe.IssueDate.ToString("dd-MM-yyyy")</td>
                     <td>
                         <button class="btn btn-outline-dark modalLink" type="button" data-toggle="modal" data-target="#modalDiv"
-                                aria-expanded="false" aria-controls="modalDiv" onclick="Open(@recipe.RECIPEID)">
+                        aria-expanded="false" aria-controls="modalDiv" onclick="Open(@recipe.RecipeID)">
                             Detaylar
                         </button>
                     </td>
                 </tr>
+             }
             }
         </tbody>
     </table>

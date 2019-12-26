@@ -16,7 +16,7 @@ namespace SOAProject.Controllers
         public ActionResult Recipes(bool isDelivered = false)
         {
 
-            int delivered = isDelivered ? 1 : 0;
+            int delivered = isDelivered ? 1: 0;
             ViewData["delivered"] = delivered.ToString();
             int patientId = GetPatientId();
 
@@ -68,18 +68,13 @@ namespace SOAProject.Controllers
             List<SelectListItem> pharmaciesSelectList = new List<SelectListItem>();
             foreach (var item in pharmacies)
             {
-                if (patients[0].PHARMACYNAME != item.PHARMACYNAME)
-                    pharmaciesSelectList.Add(new SelectListItem { Text = item.PHARMACYNAME, Value = item.PHARMACYID.ToString() });
-
-
+                if (patients[0].PharmacyName != item.PharmacyName)
+                    pharmaciesSelectList.Add(new SelectListItem { Text = item.PharmacyName, Value = item.PharmacyID.ToString() });
                 else
-                    pharmaciesSelectList.Add(new SelectListItem { Text = item.PHARMACYNAME, Value = item.PHARMACYID.ToString(), Selected = true });
+                    pharmaciesSelectList.Add(new SelectListItem { Text = item.PharmacyName, Value = item.PharmacyID.ToString(), Selected = true });
             }
 
-            ViewBag.Pharmacy = pharmaciesSelectList;
-
-            
-           
+            ViewData["PharmacyList"] = pharmaciesSelectList;
 
             return View(patients[0]);
         }
@@ -88,13 +83,13 @@ namespace SOAProject.Controllers
         [HttpPost]
         public ActionResult Settings(FormCollection form)
         {
-            string pharmacyID = form["Pharmacy"].ToString();
+            string pharmacyId = form["PharmacyList"].ToString();
             string patientId = GetPatientId().ToString();
 
             var result = ApiConnect.Post("/changePharmacy", new Dictionary<string, string>
             {
                 {"PatientID", patientId},
-                {"PharmacyID",pharmacyID}
+                {"PharmacyID",pharmacyId}
             });
 
             if (result.Result.ToString() == "1")
@@ -109,7 +104,7 @@ namespace SOAProject.Controllers
             Recipe foundedRecipe = null;
             foreach (var recipe in recipesList)
             {
-                if (recipe.RECIPEID == id)
+                if (recipe.RecipeID == id)
                 {
                     foundedRecipe = recipe;
                     break;

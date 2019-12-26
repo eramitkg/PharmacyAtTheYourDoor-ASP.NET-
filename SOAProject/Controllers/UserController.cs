@@ -43,7 +43,7 @@ namespace SOAProject.Controllers
                 else if (role == "pharmacy")
                     return RedirectToAction("Recipes", "Pharmacy");
 
-                else
+                else if(role == "patient")
                     return RedirectToAction("Recipes", "Patient"); 
             }
             else
@@ -76,7 +76,7 @@ namespace SOAProject.Controllers
                 {
                     patient = patients[0];
                     FormsAuthentication.SetAuthCookie(Role.ToString(), false);
-                    Session["PatientID"] = patient.PATIENTID;
+                    Session["PatientID"] = patient.PatientID;
                     return true;
                 }
                 return false;
@@ -97,7 +97,7 @@ namespace SOAProject.Controllers
                 {
                     doctor = doctors[0];
                     FormsAuthentication.SetAuthCookie(Role.ToString(), false);
-                    Session["DoctorID"] = doctor.DOCTORID;
+                    Session["DoctorID"] = doctor.DoctorID;
                     return true;
                 }
                 return false;
@@ -118,7 +118,7 @@ namespace SOAProject.Controllers
                 {
                     pharmacy = pharmacies[0];
                     FormsAuthentication.SetAuthCookie(Role.ToString(), false);
-                    Session["PharmacyId"] = pharmacy.PHARMACYID;
+                    Session["PharmacyId"] = pharmacy.PharmacyID;
                     return true;
                 }
                 return false;

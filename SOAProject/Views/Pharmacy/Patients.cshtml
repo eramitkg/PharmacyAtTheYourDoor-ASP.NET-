@@ -10,24 +10,34 @@
         <thead class="table-dark">
             <tr>
                 <th><i class="fas fa-leaf mr-2 teal-text" aria-hidden="true"></i>Hasta TC</th>
-                <th><i class="fas fa-leaf mr-2 teal-text" aria-hidden="true"></i>Tarih</th>
+                <th><i class="fas fa-leaf mr-2 teal-text" aria-hidden="true"></i>Hasta</th>
                 <th><i class="fas fa-first-aid">&nbsp;İşlemler</i></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var patient in Model)
+            @if (Model == null)
+            {
+            <tr>
+                <td>Henüz hastanız bulunmamaktadır.</td>
+            </tr>
+            }
+            else
+            {
+            foreach (var patient in Model)
             {
                 <tr>
-                    <td>@patient.TC</td>
-                    <td>@patient.USERNAME @patient.SURNAME</td>
+                    <td>@patient.Tc</td>
+                    <td>@patient.Username @patient.Surname</td>
                     <td>
                         <button class="btn btn-outline-dark modalLink" type="button" data-toggle="modal" data-target="#modalDiv"
-                                aria-expanded="false" aria-controls="modalDiv" onclick="Open(@patient.USERID)">
+                                aria-expanded="false" aria-controls="modalDiv" onclick="Open(@patient.UserID)">
                             Detaylar
                         </button>
                     </td>
                 </tr>
             }
+            }
+
         </tbody>
     </table>
 </div>

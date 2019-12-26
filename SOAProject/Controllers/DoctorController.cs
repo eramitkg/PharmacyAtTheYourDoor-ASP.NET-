@@ -31,7 +31,7 @@ namespace SOAProject.Controllers
             Recipe foundedRecipe = null;
             foreach (var recipe in recipesList)
             {
-                if (recipe.RECIPEID == id)
+                if (recipe.RecipeID == id)
                 {
                     foundedRecipe = recipe;
                     break;
