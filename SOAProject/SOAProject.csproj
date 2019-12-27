@@ -268,7 +268,7 @@
     <Compile Include="Controllers\PharmacyController.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Recipe.cs" />
-    <Compile Include="Models\RecipeOperation.cs" />
+    <Compile Include="Models\ApiOperation.cs" />
     <Compile Include="Security\UserRoleProvider.cs" />
     <Compile Include="Services\Toastr\Toastr.cs" />
     <Compile Include="Services\ToastrService.cs" />

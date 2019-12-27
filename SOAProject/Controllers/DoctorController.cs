@@ -12,12 +12,11 @@ namespace SOAProject.Controllers
     {
         private static List<Recipe> recipesList;
 
-        
         public ActionResult Recipes()
         {
             int doctorId = GetDoctorID();
 
-            RecipeOperation recipeOp = RecipeOperation.getInstance();
+            ApiOperation recipeOp = ApiOperation.GetInstance();
             recipesList = recipeOp.GetRecipes("/getmedicinesfordoctor", new Dictionary<string, string>
             {
                 { "doctorId", doctorId.ToString()}
@@ -39,7 +38,6 @@ namespace SOAProject.Controllers
             }
             return PartialView("RecipeDetail", foundedRecipe);
         }
-
         public ActionResult WriteRecipe()
         {
             return View();
@@ -48,7 +46,7 @@ namespace SOAProject.Controllers
         [HttpPost]
         public ActionResult WriteRecipe(FormCollection form)
         {
-            RecipeOperation reOP = RecipeOperation.getInstance();
+            ApiOperation reOP = ApiOperation.GetInstance();
             string doctorId = GetDoctorID().ToString();
 
             var result =ApiConnect.Post("/createrecipefordoctor", new Dictionary<string, string>
@@ -62,9 +60,7 @@ namespace SOAProject.Controllers
                 ToastrService.AddToUserQueue(new Toastr("Hasta Bulunamadı", "Reçete Yazılamadı.", ToastrType.Error));
                 return RedirectToAction("Recipes", "Doctor");
             }
-                
-
-
+            
             int i = Convert.ToInt32(form["counter"]);
 
             for (int j = 1; j <= i; j++)
@@ -94,15 +90,11 @@ namespace SOAProject.Controllers
             }
 
             return null;
-
         }
 
-    
         private int GetDoctorID()
         {
             return Convert.ToInt32(Session["DoctorID"]);
         }
-
-        
     }
 }
