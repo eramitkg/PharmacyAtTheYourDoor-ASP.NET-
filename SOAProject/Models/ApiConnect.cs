@@ -14,7 +14,6 @@ namespace SOAProject.Models
     {
         public static string ConnString = ConfigurationManager.ConnectionStrings["DefaultApiUrl"].ConnectionString;
 
-        
         public async static Task<object> Get(string ApiUrl)
         {
             using(var client = new HttpClient())
@@ -23,9 +22,7 @@ namespace SOAProject.Models
                 client.DefaultRequestHeaders.Add("Session", BaseObject.Session);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BaseObject.Token);
                 
-
                 var response = client.GetAsync(ConnString + ApiUrl);
-
                 var responseString = response.Result.Content.ReadAsStringAsync();
                 var err = responseString.Result;
                 try
@@ -40,7 +37,6 @@ namespace SOAProject.Models
                 }
             }
         }
-
         public async static Task<object> Post(string ApiUrl, Dictionary<string, string> keyValuePairs = null)
         {
             using (var client = new HttpClient())

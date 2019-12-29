@@ -15,12 +15,11 @@ namespace SOAProject.Controllers
 
         public ActionResult Recipes(bool isDelivered = false)
         {
-
             int delivered = isDelivered ? 1: 0;
             ViewData["delivered"] = delivered.ToString();
             int patientId = GetPatientId();
 
-            RecipeOperation recipeOp = RecipeOperation.getInstance();
+            ApiOperation recipeOp = ApiOperation.GetInstance();
             recipesList = recipeOp.GetRecipes("/getmedicinesforpatient", new Dictionary<string, string>
             {
                 { "PatientId", patientId.ToString()},
@@ -47,7 +46,6 @@ namespace SOAProject.Controllers
                 return RedirectToAction("Recipes","Patient");
             }
             return RedirectToAction("Recipes", "Patient");
-
         }
        
         public ActionResult Settings()

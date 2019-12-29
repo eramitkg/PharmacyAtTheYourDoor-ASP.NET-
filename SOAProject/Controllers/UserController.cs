@@ -49,17 +49,14 @@ namespace SOAProject.Controllers
             else
                 ToastrService.AddToUserQueue(new Toastr("Lütfen giriş bilgilerinizi kontrol ediniz ", "Giriş Yapılamadı", ToastrType.Error));
             
-
             return View();
         }
 
-        
         public ActionResult Register()
         {
             return View();
         }
 
-        
         public bool Login(string loginNo,string Password,string Role)
         {
             if (Role =="patient")
@@ -129,8 +126,6 @@ namespace SOAProject.Controllers
             }
            
         }
-
-
         public ActionResult Logout()
         {
             ToastrService.AddToUserQueue(new Toastr("Başarılı Bir Şekilde Gerçekleşti", "Çıkış Yapıldı", ToastrType.Info));

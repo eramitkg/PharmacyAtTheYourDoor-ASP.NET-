@@ -19,7 +19,7 @@ namespace SOAProject.Controllers
 
             int delivered = isDelivered ? 1 : 0;
 
-            RecipeOperation recipeOp = RecipeOperation.getInstance();
+            ApiOperation recipeOp = ApiOperation.GetInstance();
             recipeList = recipeOp.GetRecipes("/getmedicinesforpharmacy", new Dictionary<string, string>
             {
                 { "PharmacyID", pharmacyId.ToString()},
@@ -27,7 +27,6 @@ namespace SOAProject.Controllers
             });
 
             return View(recipeList);
-            
         }
 
         public ActionResult RecipeDetail(int id)
@@ -47,7 +46,7 @@ namespace SOAProject.Controllers
         public ActionResult Patients()
         {
             int pharmacyId = GetPharmacyId();
-            RecipeOperation recipeOp = RecipeOperation.getInstance();
+            ApiOperation recipeOp = ApiOperation.GetInstance();
             patientList = recipeOp.GetPatients("/getpatientsforpharmacy", new Dictionary<string, string>
             {
                 { "PharmacyId", pharmacyId.ToString()}

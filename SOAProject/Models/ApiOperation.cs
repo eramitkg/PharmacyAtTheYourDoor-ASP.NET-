@@ -6,17 +6,15 @@ using Newtonsoft.Json;
 
 namespace SOAProject.Models
 {
-    public class RecipeOperation
+    public class ApiOperation
     {
-        private static RecipeOperation recipeOp;
-        private  RecipeOperation() { }
+        private static ApiOperation recipeOp;
+        private  ApiOperation() { }
 
-        public static RecipeOperation getInstance()
+        public static ApiOperation GetInstance()
         {
-            return recipeOp ?? (recipeOp = new RecipeOperation());
+            return recipeOp ?? (recipeOp = new ApiOperation());
         }
-
-       
 
         public List<Recipe> GetRecipes(string url, Dictionary<string, string> dictionary)
         {
